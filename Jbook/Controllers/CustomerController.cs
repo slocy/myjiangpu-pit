@@ -15,6 +15,11 @@ namespace Jbook.Controllers
             return Ok(new Customer()); ;
         }
 
+        public IHttpActionResult PostCustomer(int customerId, string wechatKey, string customerName, string nickname, string city, string geo)
+        {
+            return Ok(new Customer()); ;
+        }
+
         public IEnumerable<Customer> Get()
         {
             return null;
