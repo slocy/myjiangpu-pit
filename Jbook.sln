@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jbook", "Jbook\Jbook.csproj", "{63F165A9-1D98-498D-A0CF-8AD0F5E794D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jbook.UnitTest", "Jbook.UnitTest\Jbook.UnitTest.csproj", "{398A8B69-0456-4824-A5B1-AE860D624E3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63F165A9-1D98-498D-A0CF-8AD0F5E794D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F165A9-1D98-498D-A0CF-8AD0F5E794D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F165A9-1D98-498D-A0CF-8AD0F5E794D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F165A9-1D98-498D-A0CF-8AD0F5E794D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{398A8B69-0456-4824-A5B1-AE860D624E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{398A8B69-0456-4824-A5B1-AE860D624E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{398A8B69-0456-4824-A5B1-AE860D624E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{398A8B69-0456-4824-A5B1-AE860D624E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
