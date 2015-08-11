@@ -12,7 +12,7 @@ namespace Jbook.Controllers
         // GET: api/Index
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value1", "value2" , "valueN"};
         }
 
         // GET: api/Index/5
