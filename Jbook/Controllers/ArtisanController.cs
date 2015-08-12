@@ -1,4 +1,5 @@
-﻿using Jbook.Models;
+﻿using Jbook.Base;
+using Jbook.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,20 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class ArtisanController : ApiController
+    public class ArtisanController : Jbook.Base.BaseApiController
     {
         public IHttpActionResult Get(int id)
         {
-            return Ok(new Artisan());
+            var artisan = base.Ctx.Sql("select * from artisan where artisanId=@0", id).QuerySingle<Artisan>();
+
+            return Ok(artisan);
         }
 
-        public IEnumerable<Artisan> Get()
+        public IHttpActionResult Get()
         {
-            return null;
+            var artisanList = base.Ctx.Sql("select * from artisan").QueryMany<Artisan>();
+
+            return Ok(artisanList);
         }
     }
 }

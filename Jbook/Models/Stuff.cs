@@ -11,8 +11,10 @@ namespace Jbook.Models
         public String Title { get; set; }
         public String Description { get; set; }
         public Decimal Price { get; set; }
-        public String[] Images { get; set; }
+        public String Images { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        public String UpdateBy { get; set; }
+        public String CreateBy { get; set; }
     }
 }

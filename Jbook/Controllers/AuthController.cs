@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class AuthController : ApiController
+    public class AuthController : Jbook.Base.BaseApiController
     {
         public IHttpActionResult Get(int id)
         {

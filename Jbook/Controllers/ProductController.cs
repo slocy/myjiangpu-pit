@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class ProductController : ApiController
+    public class ProductController : Jbook.Base.BaseApiController
     {
         Product[] products = new Product[]
         {
@@ -27,9 +27,11 @@ namespace Jbook.Controllers
             return Ok(product);
         }
 
-        public IEnumerable<Product> Get()
+        public IHttpActionResult Get()
         {
-            return products;
+            var books = base.Ctx.Sql("select * from stuff").QueryMany<Stuff>();
+
+            return Ok(books);
         }
     }
 }

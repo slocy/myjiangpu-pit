@@ -8,21 +8,18 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class CustomerController : ApiController
+    public class CustomerController : Jbook.Base.BaseApiController
     {
         public IHttpActionResult Get(int id)
         {
-            return Ok(new Customer()); ;
+            var customer = base.Ctx.Sql("select * from customer where customerid = @0", id).QuerySingle<Customer>();
+
+            return Ok(customer);
         }
 
         public IHttpActionResult PostCustomer(int customerId, string wechatKey, string customerName, string nickname, string city, string geo)
         {
-            return Ok(new Customer()); ;
-        }
-
-        public IEnumerable<Customer> Get()
-        {
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

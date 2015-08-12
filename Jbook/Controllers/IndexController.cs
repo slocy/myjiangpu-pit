@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class IndexController : ApiController
+    public class IndexController : Jbook.Base.BaseApiController
     {
         // GET: api/Index
         public IEnumerable<string> Get()

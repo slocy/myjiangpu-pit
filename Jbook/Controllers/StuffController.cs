@@ -8,11 +8,13 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class StuffController : ApiController
+    public class StuffController : Jbook.Base.BaseApiController
     {
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult GetByBookId(int id)
         {
-            return Ok(new Stuff());
+            var stuffList = base.Ctx.Sql("select * from stuff where stuffId = @0", id).QueryMany<Stuff>();
+
+            return Ok(stuffList);
         }
 
         public IEnumerable<Stuff> Get()

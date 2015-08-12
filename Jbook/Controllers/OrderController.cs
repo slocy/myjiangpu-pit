@@ -8,11 +8,15 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class OrderController : ApiController
+    public class OrderController : Jbook.Base.BaseApiController
     {
         public IHttpActionResult Get(int id)
         {
-            return Ok(new Order());
+            var order = base.Ctx.Sql("select * from order where orderid = @orderid")
+                .Parameter("orderid", id)
+                .QuerySingle<Order>();
+
+            return Ok(order);
         }
 
         public IHttpActionResult PostOrder(int customerId, int quantity, int lessonId, int utilityId, int stuffId)
@@ -20,9 +24,13 @@ namespace Jbook.Controllers
             return Ok(new Order());
         }
 
-        public IEnumerable<Order> Get()
+        public IHttpActionResult GetByCustomerId(int id)
         {
-            return null;
+            var orderList = base.Ctx.Sql("select * from order where customerId = @customerId")
+                .Parameter("customerId", id)
+                .QueryMany<Order>();
+
+            return Ok(orderList);
         }
     }
 }

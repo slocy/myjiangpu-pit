@@ -8,11 +8,13 @@ using System.Web.Http;
 
 namespace Jbook.Controllers
 {
-    public class PaymentController : ApiController
+    public class PaymentController : Jbook.Base.BaseApiController
     {
-        public IHttpActionResult Get(int customerId, int paymentId)
+        public IHttpActionResult GetByCustomerId(int customerId)
         {
-            return Ok(new Payment());
+            var paymentList = base.Ctx.Sql("select * from payment where paymentId = @0", customerId).QueryMany<Payment>();
+
+            return Ok(paymentList);
         }
 
         public IHttpActionResult PostPayment(int customerId, bool isPaid, decimal summary, string method, int quantity, int lessonId, int stuffId, int utilityId)
@@ -23,11 +25,6 @@ namespace Jbook.Controllers
         public IHttpActionResult PutPaid(int customerId, int paymentId, bool isPaid)
         {
             return Ok(new Payment());
-        }
-
-        public IEnumerable<Payment> Get()
-        {
-            return null;
         }
     }
 }
