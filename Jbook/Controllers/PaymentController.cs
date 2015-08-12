@@ -10,21 +10,21 @@ namespace Jbook.Controllers
 {
     public class PaymentController : Jbook.Base.BaseApiController
     {
-        public IHttpActionResult GetByCustomerId(int customerId)
+        public IHttpActionResult GetByCustomerId(int id)
         {
-            var paymentList = base.Ctx.Sql("select * from payment where paymentId = @0", customerId).QueryMany<Payment>();
+            var paymentList = base.Ctx.Sql("select * from payment where paymentId = @0", id).QueryMany<Payment>();
 
             return Ok(paymentList);
         }
 
         public IHttpActionResult PostPayment(int customerId, bool isPaid, decimal summary, string method, int quantity, int lessonId, int stuffId, int utilityId)
         {
-            return Ok(new Payment());
+            throw new NotImplementedException();
         }
 
         public IHttpActionResult PutPaid(int customerId, int paymentId, bool isPaid)
         {
-            return Ok(new Payment());
+            throw new NotImplementedException();
         }
     }
 }

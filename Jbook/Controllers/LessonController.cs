@@ -10,20 +10,20 @@ namespace Jbook.Controllers
 {
     public class LessonController : Jbook.Base.BaseApiController
     {
-        public IHttpActionResult Get(int artisanId, String status)
+        public IHttpActionResult Get(int id, String sid)
         {
             var lessonList = base.Ctx.Sql("select * from lesson where artisanId = @artisanId and status = @status")
-                .Parameter("artisanId", artisanId)
-                .Parameter("status", status)
+                .Parameter("artisanId", id)
+                .Parameter("status", sid)
                 .QueryMany<Lesson>();
 
             return Ok(lessonList);
         }
 
-        public IHttpActionResult Get(int lessonId)
+        public IHttpActionResult Get(int id)
         {
             var lesson = base.Ctx.Sql("select * from lesson where lessonId = @lessonId")
-                .Parameter("lessonId", lessonId)
+                .Parameter("lessonId", id)
                 .QuerySingle<Lesson>();
 
             return Ok(lesson);

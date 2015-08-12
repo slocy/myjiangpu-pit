@@ -27,8 +27,10 @@ namespace Jbook.Controllers
             return Ok(product);
         }
 
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int id, int sid, int tid)
         {
+            var z = "";
+
             var books = base.Ctx.Sql("select * from stuff").QueryMany<Stuff>();
 
             return Ok(books);

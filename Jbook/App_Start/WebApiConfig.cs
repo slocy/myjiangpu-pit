@@ -17,7 +17,7 @@ namespace Jbook
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "{controller}/{action}/{id}",
+                routeTemplate: "{controller}/{action}/{id}/{sid}/{tid}",
                 defaults: new { id = RouteParameter.Optional }
             );
 

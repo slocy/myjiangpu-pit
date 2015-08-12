@@ -21,7 +21,7 @@ namespace Jbook.Controllers
 
         public IHttpActionResult PostOrder(int customerId, int quantity, int lessonId, int utilityId, int stuffId)
         {
-            return Ok(new Order());
+            throw new NotImplementedException();
         }
 
         public IHttpActionResult GetByCustomerId(int id)
