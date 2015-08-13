@@ -4,12 +4,9 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
 
-namespace Jbook
-{
-    public static class WebApiConfig
-    {
-        public static void Register(HttpConfiguration config)
-        {
+namespace Jbook {
+    public static class WebApiConfig {
+        public static void Register(HttpConfiguration config) {
             // Web API configuration and services
 
             // Web API routes
@@ -18,10 +15,12 @@ namespace Jbook
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{action}/{id}/{sid}/{tid}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                defaults:
+                    new {id = RouteParameter.Optional, sid = RouteParameter.Optional, tid = RouteParameter.Optional}
+                );
 
-            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            var appXmlType =
+                config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
         }
     }

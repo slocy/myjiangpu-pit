@@ -17,6 +17,8 @@ namespace Jbook.Models
         public String Address { get; set; }
         public String[] Images { get; set; }
         public DateTime CreateDate { get; set; }
+        public String CreateBy { get; set; }
         public DateTime UpdateDate { get; set; }
+        public String UpdateBy { get; set; }
     }
 }
