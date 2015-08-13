@@ -12,7 +12,7 @@ namespace Jbook.Controllers
     {
         public IHttpActionResult Get(int id, String sid)
         {
-            var lessonList = base.Ctx.Sql("select * from lesson where artisanId = @artisanId and status = @status")
+            var lessonList = base.Ctx.Sql("select * from lesson where artisanId = @artisanId and [status] = @status")
                 .Parameter("artisanId", id)
                 .Parameter("status", sid)
                 .QueryMany<Lesson>();

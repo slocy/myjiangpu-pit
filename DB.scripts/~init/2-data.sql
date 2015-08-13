@@ -168,10 +168,11 @@ values  ( N'蔷薇胸花原材料包', -- Title - nvarchar(256)
           N'Kris'  -- CreateBy - nvarchar(128)
           )
 
-insert into dbo.Lesson ( Title, Comment, ArtisanId, BookId, ScheduleDate, Place, Price, UpdateBy, UpdateDate, CreateDate, CreateBy )
+insert into dbo.Lesson ( Title, Comment, ArtisanId, [Status], BookId, ScheduleDate, Place, Price, UpdateBy, UpdateDate, CreateDate, CreateBy )
 values  ( N'蔷薇胸花O2O教学', -- Title - nvarchar(256)
           N'自然风干的蔷薇和银叶菊，嵌有星星点点的冬菇草，跟着匠谱，你手中的植物就会有新的可能。如果你在夏天喜欢穿浅色裙子，那你需要这样一枚胸针。', -- Comment - nvarchar(max)
           @currentArtisanId, -- ArtisanId - int
+		  'OPEN',
           @currentBookId, -- BookId - int
           getDate(), -- ScheduleDate - datetime
           N'厦门市思明区旧物仓', -- Place - nvarchar(max)

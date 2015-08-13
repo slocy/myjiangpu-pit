@@ -187,6 +187,7 @@ if not exists ( select  1
         create table Lesson ( LessonId int DEFAULT (NEXT value for dbo.GLSEQ)
                                            not null ,
                               Title nVarchar(256) not null ,
+							  [Status] nVarchar(128) not null,
                               Comment nVarchar(max) null ,
                               ArtisanId int null ,
                               BookId int null ,
