@@ -14,9 +14,11 @@ namespace Jbook.Models
         public String Description { get; set; }
         public String ArtisanId { get; set; }
         public String PrimaryImage { get; set; }
-        public String PrimaryVideo { get; set; }
+        public String PrimaryVedio { get; set; }
         public String[] Images { get; set; }
         public DateTime CreateDate { get; set; }
+        public String UpdateBy { get; set; }
         public DateTime UpdateDate { get; set; }
+        public String CreateBy { get; set; }
     }
 }
