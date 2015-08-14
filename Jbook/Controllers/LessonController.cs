@@ -43,14 +43,12 @@ namespace Jbook.Controllers {
         public IHttpActionResult PostApply([FromBody] LessonCustomer lessonCustomer) {
             lessonCustomer.CreateBy = "API";
             lessonCustomer.UpdateBy = "API";
-            lessonCustomer.CreateDate = DateTime.Now;
-            lessonCustomer.UpdateDate = DateTime.Now;
 
-            lessonCustomer.LessonId = base.Ctx.Insert<LessonCustomer>("LessonCustomer", lessonCustomer)
-                .AutoMap(x => x.LessonCustomerId)
-                .ExecuteReturnLastId<int>();
+            var result = base.Ctx.Insert<LessonCustomer>("LessonCustomer", lessonCustomer)
+                .AutoMap(x => x.LessonCustomerId, x => x.CreateDate, x => x.UpdateDate)
+                .Execute();
 
-            return Ok("OK");
+            return Ok(result);
         }
 
         public IHttpActionResult PutPaid(int lessonId, int customerId, bool isPaid) {
