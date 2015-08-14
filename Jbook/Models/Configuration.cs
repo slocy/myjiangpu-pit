@@ -7,7 +7,11 @@ namespace Jbook.Models
 {
     public class Configuration
     {
-        public Boolean IsApiRunning { get; set; }
-		public String ConnectionString { get; set; }
+        public String KeyName { get; set; }
+		public String Value { get; set; }
+        public String CreateBy { get; set; }
+        public DateTime CreateDate { get; set; }
+        public String UpdateBy { get; set; }
+        public DateTime UpdateDate { get; set; }
     }
 }

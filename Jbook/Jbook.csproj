@@ -102,7 +102,6 @@
     <Compile Include="Controllers\ArtisanController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\BookStepController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\LessonController.cs" />

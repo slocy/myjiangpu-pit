@@ -1,9 +1,10 @@
 create sequence dbo.GLSEQ
-as INT
+as int
 
 minValue 1
 no maxValue
-start with 1
+increment by 17
+start with 1;
 
 go
 
@@ -15,7 +16,8 @@ if not exists ( select  1
                 where   name = 'SystemLog'
                         and type = 'U' )
     begin
-        create table SystemLog ( SystemLogId int DEFAULT (NEXT value for dbo.GLSEQ) not null ,
+        create table SystemLog ( SystemLogId int default ( next value for dbo.GLSEQ )
+                                                 not null ,
                                  Title nVarchar(256) not null ,
                                  CustomerId int null ,
                                  [Message] nVarchar(max) null ,
@@ -23,12 +25,16 @@ if not exists ( select  1
                                  [Level] nVarchar(128) null ,
                                  [Source] nVarchar(256) null ,
                                  InnerMessage nVarchar(max) null ,
-                                 UpdateBy nVarchar(128) not null ,
-                                 UpdateDate dateTime not null ,
-                                 CreateDate dateTime not null ,
-                                 CreateBy nVarchar(128) not null ,
-                                 constraint PK_SystemLog primary key nonClustered ( SystemLogId ) )
-    end
+                                 UpdateBy nVarchar(128) not null
+                                                        default 'API' ,
+                                 UpdateDate dateTime not null
+                                                     default getDate() ,
+                                 CreateDate dateTime not null
+                                                     default getDate() ,
+                                 CreateBy nVarchar(128) not null
+                                                        default 'API' ,
+                                 constraint PK_SystemLog primary key nonClustered ( SystemLogId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -39,7 +45,7 @@ if not exists ( select  1
                 where   name = 'Customer'
                         and type = 'U' )
     begin
-        create table Customer ( CustomerId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Customer ( CustomerId int default ( next value for dbo.GLSEQ )
                                                not null ,
                                 WechatId nVarchar(512) null ,
                                 Name nVarchar(256) not null ,
@@ -48,12 +54,16 @@ if not exists ( select  1
                                 Email nVarchar(256) null ,
                                 Cellphone nVarchar(64) null ,
                                 Token nVarchar(max) null ,
-                                UpdateBy nVarchar(128) not null ,
-                                UpdateDate dateTime not null ,
-                                CreateDate dateTime not null ,
-                                CreateBy nVarchar(128) not null ,
-                                constraint PK_Customer primary key nonClustered ( CustomerId ) )
-    end
+                                UpdateBy nVarchar(128) not null
+                                                       default 'API' ,
+                                UpdateDate dateTime not null
+                                                    default getDate() ,
+                                CreateDate dateTime not null
+                                                    default getDate() ,
+                                CreateBy nVarchar(128) not null
+                                                       default 'API' ,
+                                constraint PK_Customer primary key nonClustered ( CustomerId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -64,7 +74,7 @@ if not exists ( select  1
                 where   name = 'Artisan'
                         and type = 'U' )
     begin
-        create table Artisan ( ArtisanId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Artisan ( ArtisanId int default ( next value for dbo.GLSEQ )
                                              not null ,
                                Name nVarchar(256) not null ,
                                Fullname nVarchar(256) null ,
@@ -74,12 +84,16 @@ if not exists ( select  1
                                City nVarchar(128) null ,
                                [Address] nVarchar(256) null ,
                                Images nVarchar(max) null ,
-                               UpdateBy nVarchar(128) not null ,
-                               UpdateDate dateTime not null ,
-                               CreateDate dateTime not null ,
-                               CreateBy nVarchar(128) not null ,
-                               constraint PK_Artisan primary key nonClustered ( ArtisanId ) )
-    end
+                               UpdateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               UpdateDate dateTime not null
+                                                   default getDate() ,
+                               CreateDate dateTime not null
+                                                   default getDate() ,
+                               CreateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               constraint PK_Artisan primary key nonClustered ( ArtisanId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -90,7 +104,7 @@ if not exists ( select  1
                 where   name = 'Book'
                         and type = 'U' )
     begin
-        create table Book ( BookId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Book ( BookId int default ( next value for dbo.GLSEQ )
                                        not null ,
                             Title nVarchar(256) not null ,
                             SubTitle nVarchar(256) null ,
@@ -100,12 +114,16 @@ if not exists ( select  1
                             PrimaryImage nVarchar(max) null ,
                             PrimaryVedio nVarchar(max) null ,
                             Images nVarchar(max) null ,
-                            UpdateBy nVarchar(128) not null ,
-                            UpdateDate dateTime not null ,
-                            CreateDate dateTime not null ,
-                            CreateBy nVarchar(128) not null ,
-                            constraint PK_Book primary key nonClustered ( BookId ) )
-    end
+                            UpdateBy nVarchar(128) not null
+                                                   default 'API' ,
+                            UpdateDate dateTime not null
+                                                default getDate() ,
+                            CreateDate dateTime not null
+                                                default getDate() ,
+                            CreateBy nVarchar(128) not null
+                                                   default 'API' ,
+                            constraint PK_Book primary key nonClustered ( BookId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -116,19 +134,23 @@ if not exists ( select  1
                 where   name = 'BookStep'
                         and type = 'U' )
     begin
-        create table BookStep ( BookStepId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table BookStep ( BookStepId int default ( next value for dbo.GLSEQ )
                                                not null ,
                                 Name nVarchar(256) not null ,
                                 BookId int null ,
                                 Content nVarchar(max) null ,
                                 Images nVarchar(max) null ,
                                 Videos nVarchar(max) null ,
-                                UpdateBy nVarchar(128) not null ,
-                                UpdateDate dateTime not null ,
-                                CreateDate dateTime not null ,
-                                CreateBy nVarchar(128) not null ,
-                                constraint PK_BookStep primary key nonClustered ( BookStepId ) )
-    end
+                                UpdateBy nVarchar(128) not null
+                                                       default 'API' ,
+                                UpdateDate dateTime not null
+                                                    default getDate() ,
+                                CreateDate dateTime not null
+                                                    default getDate() ,
+                                CreateBy nVarchar(128) not null
+                                                       default 'API' ,
+                                constraint PK_BookStep primary key nonClustered ( BookStepId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -139,19 +161,23 @@ if not exists ( select  1
                 where   name = 'Stuff'
                         and type = 'U' )
     begin
-        create table Stuff ( StuffId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Stuff ( StuffId int default ( next value for dbo.GLSEQ )
                                          not null ,
                              Title nVarchar(256) not null ,
                              [Description] nVarchar(max) null ,
                              BookId int null ,
                              Price money null ,
                              Images nVarchar(max) null ,
-                             UpdateBy nVarchar(128) not null ,
-                             UpdateDate dateTime not null ,
-                             CreateDate dateTime not null ,
-                             CreateBy nVarchar(128) not null ,
-                             constraint PK_Stuff primary key nonClustered ( StuffId ) )
-    end
+                             UpdateBy nVarchar(128) not null
+                                                    default 'API' ,
+                             UpdateDate dateTime not null
+                                                 default getDate() ,
+                             CreateDate dateTime not null
+                                                 default getDate() ,
+                             CreateBy nVarchar(128) not null
+                                                    default 'API' ,
+                             constraint PK_Stuff primary key nonClustered ( StuffId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -162,18 +188,22 @@ if not exists ( select  1
                 where   name = 'Utility'
                         and type = 'U' )
     begin
-        create table Utility ( UtilityId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Utility ( UtilityId int default ( next value for dbo.GLSEQ )
                                              not null ,
                                Name nVarchar(256) not null ,
                                [Description] nVarchar(max) null ,
                                Images nVarchar(max) null ,
                                Price money null ,
-                               UpdateBy nVarchar(128) not null ,
-                               UpdateDate dateTime not null ,
-                               CreateDate dateTime not null ,
-                               CreateBy nVarchar(128) not null ,
-                               constraint PK_Utility primary key nonClustered ( UtilityId ) )
-    end
+                               UpdateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               UpdateDate dateTime not null
+                                                   default getDate() ,
+                               CreateDate dateTime not null
+                                                   default getDate() ,
+                               CreateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               constraint PK_Utility primary key nonClustered ( UtilityId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -184,22 +214,26 @@ if not exists ( select  1
                 where   name = 'Lesson'
                         and type = 'U' )
     begin
-        create table Lesson ( LessonId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Lesson ( LessonId int default ( next value for dbo.GLSEQ )
                                            not null ,
                               Title nVarchar(256) not null ,
-							  [Status] nVarchar(128) not null,
+                              [Status] nVarchar(128) not null ,
                               Comment nVarchar(max) null ,
                               ArtisanId int null ,
                               BookId int null ,
                               ScheduleDate dateTime null ,
                               Place nVarchar(max) null ,
                               Price money null ,
-                              UpdateBy nVarchar(128) not null ,
-                              UpdateDate dateTime not null ,
-                              CreateDate dateTime not null ,
-                              CreateBy nVarchar(128) not null ,
-                              constraint PK_Lesson primary key nonClustered ( LessonId ) )
-    end
+                              UpdateBy nVarchar(128) not null
+                                                     default 'API' ,
+                              UpdateDate dateTime not null
+                                                  default getDate() ,
+                              CreateDate dateTime not null
+                                                  default getDate() ,
+                              CreateBy nVarchar(128) not null
+                                                     default 'API' ,
+                              constraint PK_Lesson primary key nonClustered ( LessonId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -210,19 +244,24 @@ if not exists ( select  1
                 where   name = 'LessonCustomer'
                         and type = 'U' )
     begin
-        create table LessonCustomer ( LessonCustomerId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table LessonCustomer ( LessonCustomerId int default ( next value for dbo.GLSEQ )
                                                            not null ,
                                       LessonId int null ,
                                       CustomerId int null ,
                                       Quantity int null ,
                                       Summary money null ,
                                       Comment nVarchar(max) null ,
-                                      UpdateBy nVarchar(128) not null ,
-                                      UpdateDate dateTime not null ,
-                                      CreateDate dateTime not null ,
-                                      CreateBy nVarchar(128) not null ,
-                                      constraint PK_LessonCustomer primary key nonClustered ( LessonCustomerId ) )
-    end
+                                      Telephone nVarchar(32) null ,
+                                      UpdateBy nVarchar(128) not null
+                                                             default 'API' ,
+                                      UpdateDate dateTime not null
+                                                          default getDate() ,
+                                      CreateDate dateTime not null
+                                                          default getDate() ,
+                                      CreateBy nVarchar(128) not null
+                                                             default 'API' ,
+                                      constraint PK_LessonCustomer primary key nonClustered ( LessonCustomerId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -233,7 +272,7 @@ if not exists ( select  1
                 where   name = 'Order'
                         and type = 'U' )
     begin
-        create table [Order] ( OrderId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table [Order] ( OrderId int default ( next value for dbo.GLSEQ )
                                            not null ,
                                [Type] nVarchar(128) null ,
                                Quantity int null ,
@@ -243,12 +282,16 @@ if not exists ( select  1
                                LessonId int null ,
                                UtilityId int null ,
                                StuffId int null ,
-                               UpdateBy nVarchar(128) not null ,
-                               UpdateDate dateTime not null ,
-                               CreateDate dateTime not null ,
-                               CreateBy nVarchar(128) not null ,
-                               constraint PK_Order primary key nonClustered ( OrderId ) )
-    end
+                               UpdateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               UpdateDate dateTime not null
+                                                   default getDate() ,
+                               CreateDate dateTime not null
+                                                   default getDate() ,
+                               CreateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               constraint PK_Order primary key nonClustered ( OrderId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -259,18 +302,22 @@ if not exists ( select  1
                 where   name = 'Payment'
                         and type = 'U' )
     begin
-        create table Payment ( PaymentId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Payment ( PaymentId int default ( next value for dbo.GLSEQ )
                                              not null ,
                                Summary money null ,
                                IsPaid bit null ,
                                [Transaction] nVarchar(max) null ,
                                Method nVarchar(128) null ,
-                               UpdateBy nVarchar(128) not null ,
-                               UpdateDate dateTime not null ,
-                               CreateDate dateTime not null ,
-                               CreateBy nVarchar(128) not null ,
-                               constraint PK_Payment primary key nonClustered ( PaymentId ) )
-    end
+                               UpdateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               UpdateDate dateTime not null
+                                                   default getDate() ,
+                               CreateDate dateTime not null
+                                                   default getDate() ,
+                               CreateBy nVarchar(128) not null
+                                                      default 'API' ,
+                               constraint PK_Payment primary key nonClustered ( PaymentId ) );
+    end;
 go
 
 /*==============================================================*/
@@ -281,14 +328,18 @@ if not exists ( select  1
                 where   name = 'Configuration'
                         and type = 'U' )
     begin
-        create table Configuration ( ConfigurationId int DEFAULT (NEXT value for dbo.GLSEQ)
+        create table Configuration ( ConfigurationId int default ( next value for dbo.GLSEQ )
                                                          not null ,
                                      KeyName nVarchar(max) not null ,
                                      Value nVarchar(max) null ,
-                                     UpdateBy nVarchar(128) not null ,
-                                     UpdateDate dateTime not null ,
-                                     CreateDate dateTime not null ,
-                                     CreateBy nVarchar(128) not null ,
-                                     constraint PK_Configuration primary key nonClustered ( ConfigurationId ) )
-    end
+                                     UpdateBy nVarchar(128) not null
+                                                            default 'API' ,
+                                     UpdateDate dateTime not null
+                                                         default getDate() ,
+                                     CreateDate dateTime not null
+                                                         default getDate() ,
+                                     CreateBy nVarchar(128) not null
+                                                            default 'API' ,
+                                     constraint PK_Configuration primary key nonClustered ( ConfigurationId ) );
+    end;
 go

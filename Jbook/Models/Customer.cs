@@ -7,7 +7,8 @@ namespace Jbook.Models
 {
     public class Customer
     {
-        public String WechatId { get; set; }
+        public int CustomerId { get; set; }
+        public int WechatId { get; set; }
         public String Name { get; set; }
         public String Nickname { get; set; }
         public Boolean Gender { get; set; }
@@ -15,6 +16,8 @@ namespace Jbook.Models
         public String Cellphone { get; set; }
         public String Token { get; set; }
         public DateTime CreateDate { get; set; }
+        public String CreateBy { get; set; }
         public DateTime UpdateDate { get; set; }
+        public String UpdateBy { get; set; }
     }
 }

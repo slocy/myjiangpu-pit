@@ -7,9 +7,10 @@ namespace Jbook.Models
 {
     public class Stuff
     {
-        public String StuffId { get; set; }
+        public int StuffId { get; set; }
         public String Title { get; set; }
         public String Description { get; set; }
+        public int LessonId { get; set; }
         public Decimal Price { get; set; }
         public String Images { get; set; }
         public DateTime CreateDate { get; set; }

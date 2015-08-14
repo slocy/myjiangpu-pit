@@ -1,12 +1,23 @@
 ﻿using Jbook.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Web.Http;
 
 namespace Jbook.Controllers {
+    //public class LessonApplyBox {
+    //    public int LessonId { get; set; }
+    //    public int CustomerId { get; set; }
+    //    public string Comment { get; set; }
+    //    public decimal Price { get; set; }
+    //    public int Quantity { get; set; }
+    //    public string Telephone { get; set; }
+    //}
+
     public class LessonController : Jbook.Base.BaseApiController {
         public IHttpActionResult Get(int id, String sid) {
             var lessonList = base.Ctx.Sql("select * from lesson where artisanId = @artisanId and [status] = @status")
@@ -25,8 +36,21 @@ namespace Jbook.Controllers {
             return Ok(lesson);
         }
 
-        public IHttpActionResult PostApply(int lessonId, int customerId, bool isPaid) {
-            throw new NotImplementedException();
+        public IHttpActionResult PostPit(string id) {
+            return Ok(id);
+        }
+
+        public IHttpActionResult PostApply([FromBody] LessonCustomer lessonCustomer) {
+            lessonCustomer.CreateBy = "API";
+            lessonCustomer.UpdateBy = "API";
+            lessonCustomer.CreateDate = DateTime.Now;
+            lessonCustomer.UpdateDate = DateTime.Now;
+
+            lessonCustomer.LessonId = base.Ctx.Insert<LessonCustomer>("LessonCustomer", lessonCustomer)
+                .AutoMap(x => x.LessonCustomerId)
+                .ExecuteReturnLastId<int>();
+
+            return Ok("OK");
         }
 
         public IHttpActionResult PutPaid(int lessonId, int customerId, bool isPaid) {

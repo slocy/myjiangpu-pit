@@ -7,7 +7,7 @@ namespace Jbook.Models
 {
     public class SystemLog
     {
-        public String LogId { get; set; }
+        public int LogId { get; set; }
         public String Title { get; set; }
         public String Message { get; set; }
         public String Level { get; set; }

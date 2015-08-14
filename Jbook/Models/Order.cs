@@ -7,16 +7,18 @@ namespace Jbook.Models
 {
     public class Order
     {
-        public String OrderId { get; set; }
+        public int OrderId { get; set; }
         public String Type { get; set; }
-        public Int32 Quantity { get; set; }
-        public Int32 Summary { get; set; }
-        public String PaymentId { get; set; }
-        public String CustomerId { get; set; }
-        public String LessonId { get; set; }
-        public String UtilityId { get; set; }
-        public String StuffId { get; set; }
+        public int Quantity { get; set; }
+        public decimal Summary { get; set; }
+        public int PaymentId { get; set; }
+        public int CustomerId { get; set; }
+        public int LessonId { get; set; }
+        public int UtilityId { get; set; }
+        public int StuffId { get; set; }
         public DateTime CreateDate { get; set; }
+        public String CreateBy { get; set; }
         public DateTime UpdateDate { get; set; }
+        public String UpdateBy { get; set; }
     }
 }

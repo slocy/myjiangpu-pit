@@ -7,12 +7,12 @@ namespace Jbook.Models
 {
     public class Lesson
     {
-        public String LessonId { get; set; }
+        public int LessonId { get; set; }
         public String Title { get; set; }
         public String Comment { get; set; }
         public String Status { get; set; }
-        public String ArtisanId { get; set; }
-        public String BookId { get; set; }
+        public int ArtisanId { get; set; }
+        public int BookId { get; set; }
         public DateTime ScheduleDate { get; set; }
         public String Place { get; set; }
         public Decimal Price { get; set; }
