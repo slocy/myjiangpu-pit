@@ -1,24 +1,17 @@
-﻿using Jbook.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using Jbook.Base;
+using Jbook.Models;
 
-namespace Jbook.Controllers
-{
-    public class StuffController : Jbook.Base.BaseApiController
-    {
-        public IHttpActionResult GetByBookId(int id)
-        {
-            var stuffList = base.Ctx.Sql("select * from stuff where stuffId = @0", id).QueryMany<Stuff>();
+namespace Jbook.Controllers {
+    public class StuffController : BaseApiController {
+        public IHttpActionResult GetByBookId(int id) {
+            var stuffList = Ctx.Sql("select * from stuff where stuffId = @0", id).QueryMany<Stuff>();
 
             return Ok(stuffList);
         }
 
-        public IEnumerable<Stuff> Get()
-        {
+        public IEnumerable<Stuff> Get() {
             return null;
         }
     }

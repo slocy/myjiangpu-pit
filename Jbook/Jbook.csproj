@@ -110,6 +110,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\StuffController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
+    <Compile Include="Controllers\WechatController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -129,6 +130,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Configurations\appsettings.config" />
+    <Content Include="Configurations\connections.config" />
     <None Include="Properties\PublishProfiles\Publish To Disk.pubxml" />
   </ItemGroup>
   <PropertyGroup>
