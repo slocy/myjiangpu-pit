@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Jbook.Models
-{
-    public class Book
-    {
+namespace Jbook.Models {
+    public class Book {
         public int BookId { get; set; }
-        public String Title { get; set; }
-        public String SubTitle { get; set; }
-        public String Stuff { get; set; }
-        public String Description { get; set; }
-        public String ArtisanId { get; set; }
-        public String PrimaryImage { get; set; }
-        public String PrimaryVedio { get; set; }
-        public String Images { get; set; }
+        public string Title { get; set; }
+        public string SubTitle { get; set; }
+        public string Stuff { get; set; }
+        public string Description { get; set; }
+        public string ArtisanId { get; set; }
+        public string PrimaryImage { get; set; }
+        public string PrimaryVideo { get; set; }
+        public string Images { get; set; }
         public DateTime CreateDate { get; set; }
-        public String UpdateBy { get; set; }
+        public string UpdateBy { get; set; }
         public DateTime UpdateDate { get; set; }
-        public String CreateBy { get; set; }
+        public string CreateBy { get; set; }
     }
 }

@@ -1,26 +1,13 @@
-﻿using Jbook.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Formatting;
+﻿using System;
+using System.Web.Configuration;
 using System.Web.Http;
+using Jbook.Base;
+using Jbook.Models;
 
 namespace Jbook.Controllers {
-    //public class LessonApplyBox {
-    //    public int LessonId { get; set; }
-    //    public int CustomerId { get; set; }
-    //    public string Comment { get; set; }
-    //    public decimal Price { get; set; }
-    //    public int Quantity { get; set; }
-    //    public string Telephone { get; set; }
-    //}
-
-    public class LessonController : Jbook.Base.BaseApiController {
-        public IHttpActionResult Get(int id, String sid) {
-            var lessonList = base.Ctx.Sql("select * from lesson where artisanId = @artisanId and [status] = @status")
+    public class LessonController : BaseApiController {
+        public IHttpActionResult Get(int id, string sid) {
+            var lessonList = Ctx.Sql("select * from lesson where artisanId = @artisanId and [status] = @status")
                 .Parameter("artisanId", id)
                 .Parameter("status", sid)
                 .QueryMany<Lesson>();
@@ -29,7 +16,7 @@ namespace Jbook.Controllers {
         }
 
         public IHttpActionResult Get(int id) {
-            var lesson = base.Ctx.Sql("select * from lesson where lessonId = @lessonId")
+            var lesson = Ctx.Sql("select * from lesson where lessonId = @lessonId")
                 .Parameter("lessonId", id)
                 .QuerySingle<Lesson>();
 
@@ -40,11 +27,33 @@ namespace Jbook.Controllers {
             return Ok(id);
         }
 
+        [NonAction]
+        public string GenerateQrCodeText() {
+            var qrCodePrefix = WebConfigurationManager.AppSettings["QrCodePrefix"];
+
+            if (string.IsNullOrEmpty(qrCodePrefix)) qrCodePrefix = string.Empty;
+
+            qrCodePrefix = qrCodePrefix.Replace("|", "");
+
+            var qrCode = Guid.NewGuid().ToString().Replace("-", string.Empty);
+
+            return qrCodePrefix + qrCode;
+        }
+
         public IHttpActionResult PostApply([FromBody] LessonCustomer lessonCustomer) {
+            if (lessonCustomer.Quantity < 1) throw new ArgumentException("Lesson's quantity cannot be less than 1.");
+
             lessonCustomer.CreateBy = "API";
             lessonCustomer.UpdateBy = "API";
+            lessonCustomer.Status = "CREATED";
+            lessonCustomer.QrCode = string.Empty;
 
-            var result = base.Ctx.Insert<LessonCustomer>("LessonCustomer", lessonCustomer)
+            for (var index = 0; index < lessonCustomer.Quantity; index++)
+                lessonCustomer.QrCode += GenerateQrCodeText() + "|";
+
+            lessonCustomer.QrCode = lessonCustomer.QrCode.Trim("|".ToCharArray());
+
+            var result = Ctx.Insert("LessonCustomer", lessonCustomer)
                 .AutoMap(x => x.LessonCustomerId, x => x.CreateDate, x => x.UpdateDate)
                 .Execute();
 

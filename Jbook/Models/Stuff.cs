@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Jbook.Models
-{
-    public class Stuff
-    {
+namespace Jbook.Models {
+    public class Stuff {
         public int StuffId { get; set; }
-        public String Title { get; set; }
-        public String Description { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
         public int LessonId { get; set; }
-        public Decimal Price { get; set; }
-        public String Images { get; set; }
+        public decimal Price { get; set; }
+        public string Images { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public String UpdateBy { get; set; }
-        public String CreateBy { get; set; }
+        public string UpdateBy { get; set; }
+        public string CreateBy { get; set; }
     }
 }

@@ -54,6 +54,7 @@ if not exists ( select  1
                                 Email nVarchar(256) null ,
                                 Cellphone nVarchar(64) null ,
                                 Token nVarchar(max) null ,
+								Scope nVarchar(512) null,
                                 UpdateBy nVarchar(128) not null
                                                        default 'API' ,
                                 UpdateDate dateTime not null
@@ -248,10 +249,12 @@ if not exists ( select  1
                                                            not null ,
                                       LessonId int null ,
                                       CustomerId int null ,
+									  [Status] nVarchar(128) null,
                                       Quantity int null ,
                                       Summary money null ,
                                       Comment nVarchar(max) null ,
                                       Telephone nVarchar(32) null ,
+									  QrCode nVarchar(max) null,
                                       UpdateBy nVarchar(128) not null
                                                              default 'API' ,
                                       UpdateDate dateTime not null

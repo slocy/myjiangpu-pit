@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace Jbook.Models
-{
-    public class Customer
-    {
+namespace Jbook.Models {
+    public class Customer {
         public int CustomerId { get; set; }
-        public int WechatId { get; set; }
-        public String Name { get; set; }
-        public String Nickname { get; set; }
-        public Boolean Gender { get; set; }
-        public String Email { get; set; }
-        public String Cellphone { get; set; }
-        public String Token { get; set; }
+        public String WechatId { get; set; }
+        public string Name { get; set; }
+        public string Nickname { get; set; }
+        public bool Gender { get; set; }
+        public string Email { get; set; }
+        public string Cellphone { get; set; }
+        public string Token { get; set; }
+        public string Scope { get; set; }
         public DateTime CreateDate { get; set; }
-        public String CreateBy { get; set; }
+        public string CreateBy { get; set; }
         public DateTime UpdateDate { get; set; }
-        public String UpdateBy { get; set; }
+        public string UpdateBy { get; set; }
     }
 }
