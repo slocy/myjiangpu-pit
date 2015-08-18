@@ -6,6 +6,7 @@ using Jbook.Models;
 
 namespace Jbook.Controllers {
     public class LessonController : BaseApiController {
+        [HttpGet]
         public IHttpActionResult Get(int id, string sid) {
             var lessonList = Ctx.Sql("select * from lesson where artisanId = @artisanId and [status] = @status")
                 .Parameter("artisanId", id)
@@ -15,16 +16,13 @@ namespace Jbook.Controllers {
             return Ok(lessonList);
         }
 
+        [HttpGet]
         public IHttpActionResult Get(int id) {
             var lesson = Ctx.Sql("select * from lesson where lessonId = @lessonId")
                 .Parameter("lessonId", id)
                 .QuerySingle<Lesson>();
 
             return Ok(lesson);
-        }
-
-        public IHttpActionResult PostPit(string id) {
-            return Ok(id);
         }
 
         [NonAction]
@@ -40,7 +38,8 @@ namespace Jbook.Controllers {
             return qrCodePrefix + qrCode;
         }
 
-        public IHttpActionResult PostApply([FromBody] LessonCustomer lessonCustomer) {
+        [HttpPost]
+        public IHttpActionResult Apply([FromBody] LessonCustomer lessonCustomer) {
             if (lessonCustomer.Quantity < 1) throw new ArgumentException("Lesson's quantity cannot be less than 1.");
 
             lessonCustomer.CreateBy = "API";
@@ -60,7 +59,8 @@ namespace Jbook.Controllers {
             return Ok(result);
         }
 
-        public IHttpActionResult PutPaid(int lessonId, int customerId, bool isPaid) {
+        [HttpPut]
+        public IHttpActionResult SetPaid(int lessonId, int customerId, bool isPaid) {
             throw new NotImplementedException();
         }
     }

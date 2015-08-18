@@ -5,14 +5,11 @@ using Jbook.Models;
 
 namespace Jbook.Controllers {
     public class StuffController : BaseApiController {
+        [HttpGet]
         public IHttpActionResult GetByBookId(int id) {
             var stuffList = Ctx.Sql("select * from stuff where stuffId = @0", id).QueryMany<Stuff>();
 
             return Ok(stuffList);
-        }
-
-        public IEnumerable<Stuff> Get() {
-            return null;
         }
     }
 }

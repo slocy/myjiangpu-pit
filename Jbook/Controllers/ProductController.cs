@@ -1,37 +1,28 @@
-﻿using Jbook.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using Jbook.Base;
+using Jbook.Models;
 
-namespace Jbook.Controllers
-{
-    public class ProductController : Jbook.Base.BaseApiController
-    {
-        Product[] products = new Product[]
-        {
-            new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 5 },
-            new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
-            new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
+namespace Jbook.Controllers {
+    [Obsolete]
+    public class ProductController : BaseApiController {
+        private readonly Product[] products = {
+            new Product {Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 5},
+            new Product {Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M},
+            new Product {Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M}
         };
 
-        public IHttpActionResult Get(int id)
-        {
-            var product = products.FirstOrDefault((p) => p.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
+        public IHttpActionResult Get(int id) {
+            var product = products.FirstOrDefault(p => p.Id == id);
+            if (product == null) return NotFound();
             return Ok(product);
         }
 
-        public IHttpActionResult Get(int id, int sid, int tid)
-        {
+        public IHttpActionResult Get(int id, int sid, int tid) {
             var z = "";
 
-            var books = base.Ctx.Sql("select * from stuff").QueryMany<Stuff>();
+            var books = Ctx.Sql("select * from stuff").QueryMany<Stuff>();
 
             return Ok(books);
         }

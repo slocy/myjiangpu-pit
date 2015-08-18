@@ -123,6 +123,7 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\QrCodeController.cs" />
     <Compile Include="Controllers\StuffController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
     <Compile Include="Controllers\WechatController.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Models\BookStep.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\DataDict.cs" />
     <Compile Include="Models\Lesson.cs" />
     <Compile Include="Models\LessonCustomer.cs" />
     <Compile Include="Models\Order.cs" />

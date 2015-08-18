@@ -24,6 +24,7 @@ namespace Jbook.Controllers {
         /// <summary>
         /// Get the Wechat Ticket by AppId and AppSecret
         /// </summary>
+        [HttpGet]
         public IHttpActionResult GetTicket() {
             SaveTicketPermanently(null);
 
@@ -34,6 +35,7 @@ namespace Jbook.Controllers {
         public void SaveTicketPermanently(string ticket) {
         }
 
+        [HttpGet]
         public IHttpActionResult GetOAuth() {
             return BadRequest("Not Implemented!");
         }
