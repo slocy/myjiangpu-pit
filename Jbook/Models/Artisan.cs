@@ -10,7 +10,6 @@ namespace Jbook.Models {
         public string Description { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public string Images { get; set; }
         public DateTime CreateDate { get; set; }
         public string CreateBy { get; set; }
         public DateTime UpdateDate { get; set; }

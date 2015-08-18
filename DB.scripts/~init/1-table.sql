@@ -38,6 +38,39 @@ if not exists ( select  1
 go
 
 /*==============================================================*/
+/* Table: MediaFile                                   */
+/*==============================================================*/
+if not exists ( select  1
+                from    sys.sysobjects
+                where   name = 'MediaFile'
+                        and type = 'U' )
+    begin
+        create table MediaFile ( MediaFileId int default ( next value for dbo.GLSEQ )
+                                               not null ,
+								ParentId int not null,
+                                [Type] nVarchar(128) null default 'IMAGE' , -- Can be IMAGE, VIDEO, ABLUM and VOICE
+								Mode nVarchar(128) null default 'NORMAL', -- Can be NORMAL, THUMBNAIL
+								Class nVarchar(128) null default 'BOOK', -- Can be BOOK, BOOKSTEP, STUFF and UTILITY
+								Host nVarchar(max) null,
+								Url nVarchar(max) not null,
+								Dimension_X int null,
+								Dimension_Y int null,
+								Capacity int null,
+								ElapseTime int null, -- in seconds
+								Reference nVarchar(max) null,
+                                UpdateBy nVarchar(128) not null
+                                                       default 'API' ,
+                                UpdateDate dateTime not null
+                                                    default getDate() ,
+                                CreateDate dateTime not null
+                                                    default getDate() ,
+                                CreateBy nVarchar(128) not null
+                                                       default 'API' ,
+                                constraint PK_MediaFile primary key nonClustered ( MediaFileId ) );
+    end;
+go
+
+/*==============================================================*/
 /* Table: Customer                                   */
 /*==============================================================*/
 if not exists ( select  1
@@ -84,7 +117,6 @@ if not exists ( select  1
                                [Description] nVarchar(max) null ,
                                City nVarchar(128) null ,
                                [Address] nVarchar(256) null ,
-                               Images nVarchar(max) null ,
                                UpdateBy nVarchar(128) not null
                                                       default 'API' ,
                                UpdateDate dateTime not null
@@ -114,7 +146,6 @@ if not exists ( select  1
                             ArtisanId int null ,
                             PrimaryImage nVarchar(max) null ,
                             PrimaryVedio nVarchar(max) null ,
-                            Images nVarchar(max) null ,
                             UpdateBy nVarchar(128) not null
                                                    default 'API' ,
                             UpdateDate dateTime not null
@@ -140,8 +171,6 @@ if not exists ( select  1
                                 Name nVarchar(256) not null ,
                                 BookId int null ,
                                 Content nVarchar(max) null ,
-                                Images nVarchar(max) null ,
-                                Videos nVarchar(max) null ,
                                 UpdateBy nVarchar(128) not null
                                                        default 'API' ,
                                 UpdateDate dateTime not null
@@ -168,7 +197,6 @@ if not exists ( select  1
                              [Description] nVarchar(max) null ,
                              BookId int null ,
                              Price money null ,
-                             Images nVarchar(max) null ,
                              UpdateBy nVarchar(128) not null
                                                     default 'API' ,
                              UpdateDate dateTime not null
@@ -193,7 +221,6 @@ if not exists ( select  1
                                              not null ,
                                Name nVarchar(256) not null ,
                                [Description] nVarchar(max) null ,
-                               Images nVarchar(max) null ,
                                Price money null ,
                                UpdateBy nVarchar(128) not null
                                                       default 'API' ,

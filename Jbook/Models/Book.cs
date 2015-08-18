@@ -10,7 +10,6 @@ namespace Jbook.Models {
         public string ArtisanId { get; set; }
         public string PrimaryImage { get; set; }
         public string PrimaryVideo { get; set; }
-        public string Images { get; set; }
         public DateTime CreateDate { get; set; }
         public string UpdateBy { get; set; }
         public DateTime UpdateDate { get; set; }
