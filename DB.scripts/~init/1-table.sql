@@ -1,4 +1,4 @@
-create sequence dbo.GLSEQ
+﻿create sequence dbo.GLSEQ
 as int
 
 minValue 1

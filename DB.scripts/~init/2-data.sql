@@ -1,14 +1,14 @@
-declare @currentArtisanId int
+ï»¿declare @currentArtisanId int
 declare @currentBookId int
 
 insert  into dbo.Artisan ( Name, Fullname, WechatId, CellPhone, Description, City, Address, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'ÈãÈãÆ¼', -- Name - nvarchar(256)
-          N'³ÂÈãÆ¼', -- Fullname - nvarchar(256)
+values  ( N'èŒ¹èŒ¹è', -- Name - nvarchar(256)
+          N'é™ˆèŒ¹è', -- Fullname - nvarchar(256)
           N'', -- WechatId - nvarchar(512)
           N'', -- CellPhone - nvarchar(128)
-          N'±ÏÒµÓÚÖĞÑëÃÀÊõÑ§Ôº£¬µ·ÌÚÔÚÖ²ÎïÓëÊÖ¹¤Ö®¼ä£¬¼á³Ö×öÏ²»¶µÄÊÂÇé£¬Å¬Á¦ÈÃÏ²»¶µÄÊÂÇéÓĞ¼ÛÖµ¡£', -- Description - nvarchar(max)
-          N'ÏÃÃÅ', -- City - nvarchar(128)
-          N'ÏÃÃÅÊĞË¼Ã÷Çø¾ÉÎï²Ö', -- Address - nvarchar(256)
+          N'æ¯•ä¸šäºä¸­å¤®ç¾æœ¯å­¦é™¢ï¼Œæ£è…¾åœ¨æ¤ç‰©ä¸æ‰‹å·¥ä¹‹é—´ï¼ŒåšæŒåšå–œæ¬¢çš„äº‹æƒ…ï¼ŒåŠªåŠ›è®©å–œæ¬¢çš„äº‹æƒ…æœ‰ä»·å€¼ã€‚', -- Description - nvarchar(max)
+          N'å¦é—¨', -- City - nvarchar(128)
+          N'å¦é—¨å¸‚æ€æ˜åŒºæ—§ç‰©ä»“', -- Address - nvarchar(256)
           N'Kris', -- UpdateBy - nvarchar(128)
           getDate(), -- UpdateDate - datetime
           getDate(), -- CreateDate - datetime
@@ -19,10 +19,10 @@ SELECT @currentArtisanId = CONVERT(int, current_value) FROM sys.sequences WHERE 
 SELECT @currentArtisanId
 
 insert into dbo.Book ( Title, SubTitle, Stuff, Description, ArtisanId, PrimaryImage, PrimaryVedio, Images, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'Ç¾Ş±ĞØ»¨', -- Title - nvarchar(256)
-          N'À´×ÔÈãÆ¼µÄĞØÕëÉè¼Æ', -- SubTitle - nvarchar(256)
-          N'¸ÉÔïÖ²Îï£º»ÆÇ¾Ş±£¨1£©¡¢ÒøÒ¶¾Õ£¨1£©¡¢¶¬¹½²İ£¨3¡«5£©¡¢Éºº÷¹û£¨2£©<br/>ÆäËû¹¤¾ß£ºĞØÕë£¨1£©¡¢²İÉş¡¢¼ôµ¶¡¢ÈÈÈÛ½ºÇ¹', -- Stuff - nvarchar(max)
-          N'×ÔÈ»·ç¸ÉµÄÇ¾Ş±ºÍÒøÒ¶¾Õ£¬Ç¶ÓĞĞÇĞÇµãµãµÄ¶¬¹½²İ£¬¸ú×Å½³Æ×£¬ÄãÊÖÖĞµÄÖ²Îï¾Í»áÓĞĞÂµÄ¿ÉÄÜ¡£Èç¹ûÄãÔÚÏÄÌìÏ²»¶´©Ç³É«È¹×Ó£¬ÄÇÄãĞèÒªÕâÑùÒ»Ã¶ĞØÕë¡£', -- Description - nvarchar(max)
+values  ( N'è”·è–‡èƒ¸èŠ±', -- Title - nvarchar(256)
+          N'æ¥è‡ªèŒ¹èçš„èƒ¸é’ˆè®¾è®¡', -- SubTitle - nvarchar(256)
+          N'å¹²ç‡¥æ¤ç‰©ï¼šé»„è”·è–‡ï¼ˆ1ï¼‰ã€é“¶å¶èŠï¼ˆ1ï¼‰ã€å†¬è‡è‰ï¼ˆ3ï½5ï¼‰ã€çŠç‘šæœï¼ˆ2ï¼‰<br/>å…¶ä»–å·¥å…·ï¼šèƒ¸é’ˆï¼ˆ1ï¼‰ã€è‰ç»³ã€å‰ªåˆ€ã€çƒ­ç†”èƒ¶æª', -- Stuff - nvarchar(max)
+          N'è‡ªç„¶é£å¹²çš„è”·è–‡å’Œé“¶å¶èŠï¼ŒåµŒæœ‰æ˜Ÿæ˜Ÿç‚¹ç‚¹çš„å†¬è‡è‰ï¼Œè·Ÿç€åŒ è°±ï¼Œä½ æ‰‹ä¸­çš„æ¤ç‰©å°±ä¼šæœ‰æ–°çš„å¯èƒ½ã€‚å¦‚æœä½ åœ¨å¤å¤©å–œæ¬¢ç©¿æµ…è‰²è£™å­ï¼Œé‚£ä½ éœ€è¦è¿™æ ·ä¸€æšèƒ¸é’ˆã€‚', -- Description - nvarchar(max)
           @currentArtisanId, -- ArtisanId - int
           N'http://wx-ast.slocy.cn/image/book/adore-xiongzhen/primary.jpg', -- PrimaryImage - nvarchar(max)
           N'', -- PrimaryVedio - nvarchar(max)
@@ -37,9 +37,9 @@ SELECT @currentBookId = CONVERT(int, current_value) FROM sys.sequences WHERE nam
 SELECT @currentBookId
 
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½ÖèÒ»', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤ä¸€', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'ÒÔÒøÒ¶¾ÕÎªµ×£¬ÌôÑ¡ÈıÎå¸ù¶¬¹½²İ£¬¾ßÌå¿É¸ù¾İÒøÒ¶¾ÕµÄ´óĞ¡Ñ¡ÔñºÏÊÊµÄ¶¬¹½²İÊıÁ¿£¬ÒÔÊÓ¾õÊæÊÊÎª¼Ñ¡£', -- Content - nvarchar(max)
+          N'ä»¥é“¶å¶èŠä¸ºåº•ï¼ŒæŒ‘é€‰ä¸‰äº”æ ¹å†¬è‡è‰ï¼Œå…·ä½“å¯æ ¹æ®é“¶å¶èŠçš„å¤§å°é€‰æ‹©åˆé€‚çš„å†¬è‡è‰æ•°é‡ï¼Œä»¥è§†è§‰èˆ’é€‚ä¸ºä½³ã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/1.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -49,9 +49,9 @@ values  ( N'²½ÖèÒ»', -- Name - nvarchar(256)
           )
 
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½Öè¶ş', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤äºŒ', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'½«ÌôºÃµÄ¶¬¹½²İ³¤¶È¼ôÖÁÓëÒøÒ¶¾ÕµÈÆë¡£Õû¸öÊÖ×÷¹ı³ÌµÄ¼ôÖ¦¶¼¾¡Á¿×ñÑ­Äş³¤Îğ¶ÌÔ­Ôò£¬±Ï¾¹³¤ÁËÎÒÃÇ×îºó¿ÉÒÔ¼ô£¬¶ÌÁËºÜ¿ÉÄÜ»áÒªËğÊ§Ò»Ö¦»¨²Ä¡£', -- Content - nvarchar(max)
+          N'å°†æŒ‘å¥½çš„å†¬è‡è‰é•¿åº¦å‰ªè‡³ä¸é“¶å¶èŠç­‰é½ã€‚æ•´ä¸ªæ‰‹ä½œè¿‡ç¨‹çš„å‰ªæéƒ½å°½é‡éµå¾ªå®é•¿å‹¿çŸ­åŸåˆ™ï¼Œæ¯•ç«Ÿé•¿äº†æˆ‘ä»¬æœ€åå¯ä»¥å‰ªï¼ŒçŸ­äº†å¾ˆå¯èƒ½ä¼šè¦æŸå¤±ä¸€æèŠ±æã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/2.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -61,9 +61,9 @@ values  ( N'²½Öè¶ş', -- Name - nvarchar(256)
           )
 
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½ÖèÈı', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤ä¸‰', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'¿ªÊ¼¼ÓÈë»ÆÇ¾Ş±£¬¸ù¾İ»ÆÇ¾Ş±µÄ´óĞ¡ºÍÒøÒ¶¾ÕµÄ¹ØÏµ£¬µ÷Õû¶¬¹½²İµÄÎ»ÖÃ£¬±ÜÃâ¶à¸ùÅä²İÒ»¸ö¸ß¶È£¬¾¡Á¿´ïµ½¸ßµÍ²»Ò»´íÂäÓĞÖÂµÄ´îÅäĞ§¹û¡£', -- Content - nvarchar(max)
+          N'å¼€å§‹åŠ å…¥é»„è”·è–‡ï¼Œæ ¹æ®é»„è”·è–‡çš„å¤§å°å’Œé“¶å¶èŠçš„å…³ç³»ï¼Œè°ƒæ•´å†¬è‡è‰çš„ä½ç½®ï¼Œé¿å…å¤šæ ¹é…è‰ä¸€ä¸ªé«˜åº¦ï¼Œå°½é‡è¾¾åˆ°é«˜ä½ä¸ä¸€é”™è½æœ‰è‡´çš„æ­é…æ•ˆæœã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/3.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -73,9 +73,9 @@ values  ( N'²½ÖèÈı', -- Name - nvarchar(256)
           )
 		  
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½ÖèËÄ', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤å››', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'¼ÓÈëÉºº÷¹û¡£Åä²İµÄÑ¡ÔñÒª×¢ÒâĞÎ×´ÓëÑÕÉ«ÔÚÕû¸ö»¨ÊøÖĞµÄ´îÅä³Ì¶È¡£ÕâÀïÑ¡ÔñÔ²ĞÎ»ÒÉ«µÄÉºº÷¹û£¬Ò»ÊÇÒòÎªÉºº÷¹û¿É°®µÄÔ²ĞÎ¿ÉÒÔºÍÁíÒ»Åä²İ¡°¶¬¹½²İ¡±ĞÎ³ÉºôÓ¦£¬¶şÀ´µ­ÑÅµÄ»ÒÉ«Éºº÷¹ûÓĞ·ûºÏÕû¸öĞØÕëµÄ»ùµ÷£¬²»ÖÁÓÚÑÕÉ«¹ıÓÚÏÊÑŞ£¬Ó°Ïì»ÆÇ¾Ş±µÄÖ÷ÌåÊÓ¾õĞ§¹û¡£', -- Content - nvarchar(max)
+          N'åŠ å…¥çŠç‘šæœã€‚é…è‰çš„é€‰æ‹©è¦æ³¨æ„å½¢çŠ¶ä¸é¢œè‰²åœ¨æ•´ä¸ªèŠ±æŸä¸­çš„æ­é…ç¨‹åº¦ã€‚è¿™é‡Œé€‰æ‹©åœ†å½¢ç°è‰²çš„çŠç‘šæœï¼Œä¸€æ˜¯å› ä¸ºçŠç‘šæœå¯çˆ±çš„åœ†å½¢å¯ä»¥å’Œå¦ä¸€é…è‰â€œå†¬è‡è‰â€å½¢æˆå‘¼åº”ï¼ŒäºŒæ¥æ·¡é›…çš„ç°è‰²çŠç‘šæœæœ‰ç¬¦åˆæ•´ä¸ªèƒ¸é’ˆçš„åŸºè°ƒï¼Œä¸è‡³äºé¢œè‰²è¿‡äºé²œè‰³ï¼Œå½±å“é»„è”·è–‡çš„ä¸»ä½“è§†è§‰æ•ˆæœã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/4.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -85,9 +85,9 @@ values  ( N'²½ÖèËÄ', -- Name - nvarchar(256)
           )
 
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½ÖèÎå', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤äº”', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'×óÊÖÄ´Ö¸ÓëÊ³Ö¸½ôÎÕ»¨Êø£¬ÎŞÃûÖ¸ÓëÖĞÖ¸¼Ğ×¡²İÉşÒ»¶Ë£¬ÓÒÊÖÎÕ×¡²İÉşÁíÒ»¶Ë£¬ÈÆ»¨Êø´ó¸ÅÈıÈ¦£¬Ã¿ÈÆÒ»È¦¾ùÒªÓÃÁ¦²ø½ô¼Ó¹ÌÔÙÈÆÏÂÒ»È¦¡£', -- Content - nvarchar(max)
+          N'å·¦æ‰‹æ‹‡æŒ‡ä¸é£ŸæŒ‡ç´§æ¡èŠ±æŸï¼Œæ— åæŒ‡ä¸ä¸­æŒ‡å¤¹ä½è‰ç»³ä¸€ç«¯ï¼Œå³æ‰‹æ¡ä½è‰ç»³å¦ä¸€ç«¯ï¼Œç»•èŠ±æŸå¤§æ¦‚ä¸‰åœˆï¼Œæ¯ç»•ä¸€åœˆå‡è¦ç”¨åŠ›ç¼ ç´§åŠ å›ºå†ç»•ä¸‹ä¸€åœˆã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/5.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -97,9 +97,9 @@ values  ( N'²½ÖèÎå', -- Name - nvarchar(256)
           )
 		  
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½ÖèÁù', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤å…­', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'È»ºóÔÚ»¨Êø±³Ãæ½«²İÉş´ò½á£¬¿ÉÒÔÑ¡Ôñºûµû½á»òÆäËûÑùÊ½µÄ´ò½á·½Ê½£¬µ«ÊÇ¿¼ÂÇµ½»¨ÊøÓëĞØÕëµÄÕ³ºÏ¶È£¬½¨Òé¾¡Á¿Ñ¡ÔñÏñ¡°ËÀ½á¡±ÕâÖÖÀÎ¹ÌÓÖ¼òµ¥µÄ´ò½á·½Ê½¡£', -- Content - nvarchar(max)
+          N'ç„¶ååœ¨èŠ±æŸèƒŒé¢å°†è‰ç»³æ‰“ç»“ï¼Œå¯ä»¥é€‰æ‹©è´è¶ç»“æˆ–å…¶ä»–æ ·å¼çš„æ‰“ç»“æ–¹å¼ï¼Œä½†æ˜¯è€ƒè™‘åˆ°èŠ±æŸä¸èƒ¸é’ˆçš„ç²˜åˆåº¦ï¼Œå»ºè®®å°½é‡é€‰æ‹©åƒâ€œæ­»ç»“â€è¿™ç§ç‰¢å›ºåˆç®€å•çš„æ‰“ç»“æ–¹å¼ã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/6.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -109,9 +109,9 @@ values  ( N'²½ÖèÁù', -- Name - nvarchar(256)
           )
 		  
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½ÖèÆß', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤ä¸ƒ', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'ÕÒºÃĞØÕëÓë»¨ÊøµÄÎ»ÖÃ¡£½¨Òé¾¡Á¿ÈÃĞØÕë£¨½ğÊô²¿·Ö£©´¦ÓÚ»¨ÊøµÄÖĞ²¿Æ«ÉÏ£¬ÓÈÆäÊÇ½Ï´óµÄ»¨Êø¡£·ÀÖ¹Åå´÷Ê±ĞØ»¨Í·ÖØ½ÅÇá×óÓÒÒ¡»Î¡£', -- Content - nvarchar(max)
+          N'æ‰¾å¥½èƒ¸é’ˆä¸èŠ±æŸçš„ä½ç½®ã€‚å»ºè®®å°½é‡è®©èƒ¸é’ˆï¼ˆé‡‘å±éƒ¨åˆ†ï¼‰å¤„äºèŠ±æŸçš„ä¸­éƒ¨åä¸Šï¼Œå°¤å…¶æ˜¯è¾ƒå¤§çš„èŠ±æŸã€‚é˜²æ­¢ä½©æˆ´æ—¶èƒ¸èŠ±å¤´é‡è„šè½»å·¦å³æ‘‡æ™ƒã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/7.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -121,9 +121,9 @@ values  ( N'²½ÖèÆß', -- Name - nvarchar(256)
           )
 		  
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½Öè°Ë', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤å…«', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'ÔÚÈ·¶¨ºÃµÄ´ó¸ÅĞØÕëÎ»ÖÃ¼·ÉÏÈÈÈÛ½º£¬Õ³ÉÏĞØÕë£¬ÉÔÎ¢°´×¡ÎåÃë×óÓÒ¡£', -- Content - nvarchar(max)
+          N'åœ¨ç¡®å®šå¥½çš„å¤§æ¦‚èƒ¸é’ˆä½ç½®æŒ¤ä¸Šçƒ­ç†”èƒ¶ï¼Œç²˜ä¸Šèƒ¸é’ˆï¼Œç¨å¾®æŒ‰ä½äº”ç§’å·¦å³ã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/8.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -133,9 +133,9 @@ values  ( N'²½Öè°Ë', -- Name - nvarchar(256)
           )
 		  		  
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½Öè¾Å', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤ä¹', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'´Ó¶à¸ö½Ç¶È£¨Ö÷ÒªÊÇÕıÃæ£©¹Û²ìĞØ»¨£¬½«¶àÓàµÄ²İÉş¡¢»¨²ÄÖ¦¸É¡¢ĞØÕëÑÓ³¤²¿·Ö¼ôµô¡£', -- Content - nvarchar(max)
+          N'ä»å¤šä¸ªè§’åº¦ï¼ˆä¸»è¦æ˜¯æ­£é¢ï¼‰è§‚å¯Ÿèƒ¸èŠ±ï¼Œå°†å¤šä½™çš„è‰ç»³ã€èŠ±ææå¹²ã€èƒ¸é’ˆå»¶é•¿éƒ¨åˆ†å‰ªæ‰ã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/8.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -145,9 +145,9 @@ values  ( N'²½Öè¾Å', -- Name - nvarchar(256)
           )
 		  		  
 insert into dbo.BookStep ( Name, BookId, Content, Images, Videos, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'²½ÖèÊ®', -- Name - nvarchar(256)
+values  ( N'æ­¥éª¤å', -- Name - nvarchar(256)
           @currentBookId, -- BookId - int
-          N'»ÆÇ¾Ş±ĞØ»¨Íê³É¡£', -- Content - nvarchar(max)
+          N'é»„è”·è–‡èƒ¸èŠ±å®Œæˆã€‚', -- Content - nvarchar(max)
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/8.jpg', -- Images - nvarchar(max)
           N'', -- Videos - nvarchar(max)
           N'Kris', -- UpdateBy - nvarchar(128)
@@ -157,8 +157,8 @@ values  ( N'²½ÖèÊ®', -- Name - nvarchar(256)
           )
 
 insert into dbo.Stuff ( Title, [Description], BookId, Price, Images, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'Ç¾Ş±ĞØ»¨Ô­²ÄÁÏ°ü', -- Title - nvarchar(256)
-          N'¸ÉÔïÖ²Îï£º»ÆÇ¾Ş±£¨1£©¡¢ÒøÒ¶¾Õ£¨1£©¡¢¶¬¹½²İ£¨3¡«5£©¡¢Éºº÷¹û£¨2£©<br/>ÆäËû¹¤¾ß£ºĞØÕë£¨1£©¡¢²İÉş¡¢¼ôµ¶¡¢ÈÈÈÛ½ºÇ¹', -- Description - nvarchar(max)
+values  ( N'è”·è–‡èƒ¸èŠ±åŸææ–™åŒ…', -- Title - nvarchar(256)
+          N'å¹²ç‡¥æ¤ç‰©ï¼šé»„è”·è–‡ï¼ˆ1ï¼‰ã€é“¶å¶èŠï¼ˆ1ï¼‰ã€å†¬è‡è‰ï¼ˆ3ï½5ï¼‰ã€çŠç‘šæœï¼ˆ2ï¼‰<br/>å…¶ä»–å·¥å…·ï¼šèƒ¸é’ˆï¼ˆ1ï¼‰ã€è‰ç»³ã€å‰ªåˆ€ã€çƒ­ç†”èƒ¶æª', -- Description - nvarchar(max)
 		  @currentBookId,
           35, -- Price - money
           N'http://wx-ast.slocy.cn/image/step/adore-xiongzhen/7.jpg', -- Images - nvarchar(max)
@@ -169,13 +169,13 @@ values  ( N'Ç¾Ş±ĞØ»¨Ô­²ÄÁÏ°ü', -- Title - nvarchar(256)
           )
 
 insert into dbo.Lesson ( Title, Comment, ArtisanId, [Status], BookId, ScheduleDate, Place, Price, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'Ç¾Ş±ĞØ»¨O2O½ÌÑ§', -- Title - nvarchar(256)
-          N'×ÔÈ»·ç¸ÉµÄÇ¾Ş±ºÍÒøÒ¶¾Õ£¬Ç¶ÓĞĞÇĞÇµãµãµÄ¶¬¹½²İ£¬¸ú×Å½³Æ×£¬ÄãÊÖÖĞµÄÖ²Îï¾Í»áÓĞĞÂµÄ¿ÉÄÜ¡£Èç¹ûÄãÔÚÏÄÌìÏ²»¶´©Ç³É«È¹×Ó£¬ÄÇÄãĞèÒªÕâÑùÒ»Ã¶ĞØÕë¡£', -- Comment - nvarchar(max)
+values  ( N'è”·è–‡èƒ¸èŠ±O2Oæ•™å­¦', -- Title - nvarchar(256)
+          N'è‡ªç„¶é£å¹²çš„è”·è–‡å’Œé“¶å¶èŠï¼ŒåµŒæœ‰æ˜Ÿæ˜Ÿç‚¹ç‚¹çš„å†¬è‡è‰ï¼Œè·Ÿç€åŒ è°±ï¼Œä½ æ‰‹ä¸­çš„æ¤ç‰©å°±ä¼šæœ‰æ–°çš„å¯èƒ½ã€‚å¦‚æœä½ åœ¨å¤å¤©å–œæ¬¢ç©¿æµ…è‰²è£™å­ï¼Œé‚£ä½ éœ€è¦è¿™æ ·ä¸€æšèƒ¸é’ˆã€‚', -- Comment - nvarchar(max)
           @currentArtisanId, -- ArtisanId - int
 		  'OPEN',
           @currentBookId, -- BookId - int
           getDate(), -- ScheduleDate - datetime
-          N'ÏÃÃÅÊĞË¼Ã÷Çø¾ÉÎï²Ö', -- Place - nvarchar(max)
+          N'å¦é—¨å¸‚æ€æ˜åŒºæ—§ç‰©ä»“', -- Place - nvarchar(max)
           210, -- Price - money
           N'Kris', -- UpdateBy - nvarchar(128)
           getDate(), -- UpdateDate - datetime
