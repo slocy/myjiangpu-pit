@@ -1,30 +1,26 @@
-﻿using Jbook.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+using Jbook.Base;
+using Jbook.Models;
 
 namespace Jbook.Controllers {
-    public class BookController : Jbook.Base.BaseApiController {
+    public class BookController : BaseApiController {
         [HttpGet]
         public IHttpActionResult Get(int id) {
-            var book = base.Ctx.Sql("select * from book where bookid = @0", id).QuerySingle<Book>();
+            var book = Ctx.Sql("select * from book where bookid = @0", id).QuerySingle<Book>();
 
             return Ok(book);
         }
 
         [HttpGet]
         public IHttpActionResult Get() {
-            var books = base.Ctx.Sql("select * from book").QueryMany<Book>();
+            var books = Ctx.Sql("select * from book").QueryMany<Book>();
 
             return Ok(books);
         }
 
         [HttpGet]
         public IHttpActionResult GetSteps(int id) {
-            var bookSteps = base.Ctx.Sql("select * from BookStep where bookid = @0", id).QueryMany<BookStep>();
+            var bookSteps = Ctx.Sql("select * from BookStep where bookid = @0", id).QueryMany<BookStep>();
 
             return Ok(bookSteps);
         }
