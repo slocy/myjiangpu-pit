@@ -145,7 +145,7 @@ if not exists ( select  1
                             [Description] nVarchar(max) null ,
                             ArtisanId int null ,
                             PrimaryImage nVarchar(max) null ,
-                            PrimaryVedio nVarchar(max) null ,
+                            PrimaryVideo nVarchar(max) null ,
                             UpdateBy nVarchar(128) not null
                                                    default 'API' ,
                             UpdateDate dateTime not null

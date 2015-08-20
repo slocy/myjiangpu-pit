@@ -19,7 +19,7 @@ values  ( N'茹茹萍', -- Name - nvarchar(256)
 SELECT @currentArtisanId = CONVERT(int, current_value) FROM sys.sequences WHERE name = 'GLSEQ'
 SELECT @currentArtisanId
 
-insert into dbo.Book ( Title, SubTitle, Stuff, Description, ArtisanId, PrimaryImage, PrimaryVedio, UpdateBy, UpdateDate, CreateDate, CreateBy )
+insert into dbo.Book ( Title, SubTitle, Stuff, Description, ArtisanId, PrimaryImage, PrimaryVideo, UpdateBy, UpdateDate, CreateDate, CreateBy )
 values  ( N'蔷薇胸花', -- Title - nvarchar(256)
           N'来自茹萍的胸针设计', -- SubTitle - nvarchar(256)
           N'干燥植物：黄蔷薇（1）、银叶菊（1）、冬菇草（3～5）、珊瑚果（2）<br/>其他工具：胸针（1）、草绳、剪刀、热熔胶枪', -- Stuff - nvarchar(max)
@@ -52,7 +52,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/1.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -78,7 +78,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/2.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -102,7 +102,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/3.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -126,7 +126,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/4.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -150,7 +150,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/5.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -174,7 +174,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/6.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -198,7 +198,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/7.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -222,7 +222,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/8.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -246,7 +246,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/9.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
@@ -270,7 +270,7 @@ values  ( @currentBookStepId, -- ParentId - int
           N'NORMAL', -- Mode - nvarchar(128)
 		  N'BOOKSTEP', -- Class
           N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
-          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          N'/image/step/adore-xiongzhen/10.jpg', -- Url - nvarchar(max)
           null, -- Dimension_X - nvarchar(256)
           null, -- Dimension_Y - nvarchar(256)
           null, -- Capacity - int
