@@ -1,28 +1,34 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using Jbook.Base;
-using Jbook.Models;
+using Jbook.Pipeline;
 
 namespace Jbook.Controllers {
     public class BookController : BaseApiController {
         [HttpGet]
         public IHttpActionResult Get(int id) {
-            var book = Ctx.Sql("select * from book where bookid = @0", id).QuerySingle<Book>();
+            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(book);
+            return Ok(BookPipeline._().GetByBookId(id));
         }
 
         [HttpGet]
         public IHttpActionResult Get() {
-            var books = Ctx.Sql("select * from book").QueryMany<Book>();
+            return Ok(BookPipeline._().GetAllBooks());
+        }
 
-            return Ok(books);
+        [HttpGet]
+        public IHttpActionResult GetByArtisan(int id) {
+            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
+
+            return Ok(BookPipeline._().GetByArtisanId(id));
         }
 
         [HttpGet]
         public IHttpActionResult GetSteps(int id) {
-            var bookSteps = Ctx.Sql("select * from BookStep where bookid = @0", id).QueryMany<BookStep>();
+            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(bookSteps);
+            return Ok(BookPipeline._().GetStepsByBookId(id));
         }
     }
 }

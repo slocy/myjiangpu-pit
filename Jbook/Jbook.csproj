@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Base\BaseApiController.cs" />
+    <Compile Include="Base\BasePipeline.cs" />
     <Compile Include="Controllers\ArtisanController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BookController.cs" />
@@ -143,6 +144,18 @@
     <Compile Include="Models\Stuff.cs" />
     <Compile Include="Models\SystemLog.cs" />
     <Compile Include="Models\Utility.cs" />
+    <Compile Include="Pipeline\ArtisanPipeline.cs" />
+    <Compile Include="Pipeline\AuthPipeline.cs" />
+    <Compile Include="Pipeline\BookPipeline.cs" />
+    <Compile Include="Pipeline\CustomerPipeline.cs" />
+    <Compile Include="Pipeline\IndexPipeline.cs" />
+    <Compile Include="Pipeline\LessonPipeline.cs" />
+    <Compile Include="Pipeline\OrderPipeline.cs" />
+    <Compile Include="Pipeline\PaymentPipeline.cs" />
+    <Compile Include="Pipeline\QrCodePipeline.cs" />
+    <Compile Include="Pipeline\StuffPipeline.cs" />
+    <Compile Include="Pipeline\UtilityPipeline.cs" />
+    <Compile Include="Pipeline\WechatPipeline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
