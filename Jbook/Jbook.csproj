@@ -121,6 +121,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
+    <Compile Include="Controllers\MediaController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\QrCodeController.cs" />
