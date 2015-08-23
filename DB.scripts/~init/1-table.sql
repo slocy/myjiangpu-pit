@@ -112,6 +112,7 @@ if not exists ( select  1
                                              not null ,
                                Name nVarchar(256) not null ,
                                Fullname nVarchar(256) null ,
+							   StudioName nVarchar(256) null,
                                WechatId nVarchar(512) null ,
                                CellPhone nVarchar(128) null ,
                                [Description] nVarchar(max) null ,

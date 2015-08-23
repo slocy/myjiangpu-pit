@@ -26,7 +26,7 @@ namespace Jbook.Pipeline {
         public List<Book> GetByArtisanId(int artisanId) {
             var books =
                 Ctx.Sql(
-                    "select BookId, Title, SubTitle, [Stuff], [Description], ArtisanId, PrimaryImage, PrimaryVedio from dbo.Book where ArtisanId = @0",
+                    "select BookId, Title, SubTitle, [Stuff], [Description], ArtisanId, PrimaryImage, PrimaryVideo from dbo.Book where ArtisanId = @0",
                     artisanId).QueryMany<Book>();
 
             return books;

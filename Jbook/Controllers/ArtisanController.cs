@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Dynamic;
 using System.Web.Http;
 using Jbook.Base;
 using Jbook.Pipeline;
@@ -9,7 +10,11 @@ namespace Jbook.Controllers {
         public IHttpActionResult Get(int id) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(ArtisanPipeline._().Get(id));
+            dynamic result = new ExpandoObject();
+            result.Info = ArtisanPipeline._().Get(id);
+            result.Books = BookPipeline._().GetByArtisanId(id);
+
+            return Ok(result);
         }
     }
 }
