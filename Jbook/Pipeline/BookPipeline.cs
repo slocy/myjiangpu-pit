@@ -11,7 +11,7 @@ namespace Jbook.Pipeline {
             return new BookPipeline();
         }
 
-        public Book GetByBookId(int bookId) {
+        public Book Get(int bookId) {
             var book = Ctx.Sql("select * from book where bookid = @0", bookId).QuerySingle<Book>();
 
             return book;

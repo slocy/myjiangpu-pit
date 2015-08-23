@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Web.Http;
 using Jbook.Base;
-using Jbook.Models;
+using Jbook.Pipeline;
 
 namespace Jbook.Controllers {
     public class OrderController : BaseApiController {
         [HttpGet]
         public IHttpActionResult Get(int id) {
-            var order = Ctx.Sql("select * from order where orderid = @orderid")
-                .Parameter("orderid", id)
-                .QuerySingle<Order>();
+            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(order);
+            return Ok(OrderPipeline._().Get(id));
         }
 
         [HttpPost]
@@ -21,11 +19,9 @@ namespace Jbook.Controllers {
 
         [HttpGet]
         public IHttpActionResult GetByCustomerId(int id) {
-            var orderList = Ctx.Sql("select * from order where customerId = @customerId")
-                .Parameter("customerId", id)
-                .QueryMany<Order>();
+            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(orderList);
+            return Ok(OrderPipeline._().GetByCustomer(id));
         }
     }
 }

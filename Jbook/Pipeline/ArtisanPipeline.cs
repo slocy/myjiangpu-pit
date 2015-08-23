@@ -10,7 +10,7 @@ namespace Jbook.Pipeline {
             return new ArtisanPipeline();
         }
 
-        public Artisan GetArtisan(int artisanId) {
+        public Artisan Get(int artisanId) {
             var artisan =
                 Ctx.Sql(
                     "select top 1 ArtisanId, Name, Fullname, CellPhone, [Description], City, [Address] from dbo.Artisan where artisanId=@0",

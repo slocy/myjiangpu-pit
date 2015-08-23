@@ -2,22 +2,21 @@
 using System.Web.Http;
 using Jbook.Base;
 using Jbook.Models;
+using Jbook.Pipeline;
 
 namespace Jbook.Controllers {
     public class CustomerController : BaseApiController {
         [HttpGet]
         public IHttpActionResult Get(int id) {
-            var customer = Ctx.Sql("select * from customer where customerid = @0", id).QuerySingle<Customer>();
+            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            customer.WechatId = string.Empty;
-
-            return Ok(customer);
+            return Ok(CustomerPipeline._().Get(id));
         }
 
         [HttpPost]
         public IHttpActionResult PostCustomer(int customerId, string wechatKey, string customerName, string nickname,
             string city, string geo) {
-            throw new NotImplementedException();
+            return Ok(CustomerPipeline._().AddCustomer(new Customer()));
         }
     }
 }

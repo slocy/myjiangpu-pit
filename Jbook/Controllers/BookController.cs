@@ -9,7 +9,7 @@ namespace Jbook.Controllers {
         public IHttpActionResult Get(int id) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(BookPipeline._().GetByBookId(id));
+            return Ok(BookPipeline._().Get(id));
         }
 
         [HttpGet]
