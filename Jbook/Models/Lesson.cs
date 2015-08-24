@@ -15,5 +15,10 @@ namespace Jbook.Models {
         public string CreateBy { get; set; }
         public DateTime UpdateDate { get; set; }
         public string UpdateBy { get; set; }
+
+        public Book Book { get; set; }
+        public Artisan Artisan { get; set; }
+        public Stuff Stuff { get; set; }
+        public Utility Utility { get; set; }
     }
 }

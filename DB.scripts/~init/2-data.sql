@@ -2,11 +2,12 @@
 declare @currentBookId int
 declare @currentBookStepId int
 
-insert  into dbo.Artisan ( Name, Fullname, WechatId, CellPhone, Description, City, Address, UpdateBy, UpdateDate, CreateDate, CreateBy )
+insert  into dbo.Artisan ( Name, Fullname, WechatId, CellPhone, StudioName, Description, City, Address, UpdateBy, UpdateDate, CreateDate, CreateBy )
 values  ( N'茹茹萍', -- Name - nvarchar(256)
           N'陈茹萍', -- Fullname - nvarchar(256)
           N'', -- WechatId - nvarchar(512)
           N'', -- CellPhone - nvarchar(128)
+		  N'一朵工作室', -- StudioName
           N'毕业于中央美术学院，捣腾在植物与手工之间，坚持做喜欢的事情，努力让喜欢的事情有价值。', -- Description - nvarchar(max)
           N'厦门', -- City - nvarchar(128)
           N'厦门市思明区旧物仓', -- Address - nvarchar(256)
@@ -19,7 +20,7 @@ values  ( N'茹茹萍', -- Name - nvarchar(256)
 SELECT @currentArtisanId = CONVERT(int, current_value) FROM sys.sequences WHERE name = 'GLSEQ'
 SELECT @currentArtisanId
 
-insert into dbo.Book ( Title, SubTitle, Stuff, Description, ArtisanId, PrimaryImage, PrimaryVideo, UpdateBy, UpdateDate, CreateDate, CreateBy )
+insert into dbo.Book ( Title, SubTitle, [StuffInfo], Description, ArtisanId, PrimaryImage, PrimaryVideo, UpdateBy, UpdateDate, CreateDate, CreateBy )
 values  ( N'蔷薇胸花', -- Title - nvarchar(256)
           N'来自茹萍的胸针设计', -- SubTitle - nvarchar(256)
           N'干燥植物：黄蔷薇（1）、银叶菊（1）、冬菇草（3～5）、珊瑚果（2）<br/>其他工具：胸针（1）、草绳、剪刀、热熔胶枪', -- Stuff - nvarchar(max)
@@ -278,17 +279,6 @@ values  ( @currentBookStepId, -- ParentId - int
           null -- Reference - nvarchar(max)
           )
 
-insert into dbo.Stuff ( Title, [Description], BookId, Price, UpdateBy, UpdateDate, CreateDate, CreateBy )
-values  ( N'蔷薇胸花原材料包', -- Title - nvarchar(256)
-          N'干燥植物：黄蔷薇（1）、银叶菊（1）、冬菇草（3～5）、珊瑚果（2）<br/>其他工具：胸针（1）、草绳、剪刀、热熔胶枪', -- Description - nvarchar(max)
-		  @currentBookId,
-          35, -- Price - money
-          N'Kris', -- UpdateBy - nvarchar(128)
-          getDate(), -- UpdateDate - datetime
-          getDate(), -- CreateDate - datetime
-          N'Kris'  -- CreateBy - nvarchar(128)
-          )
-
 insert into dbo.Lesson ( Title, Comment, ArtisanId, [Status], BookId, ScheduleDate, Place, Price, UpdateBy, UpdateDate, CreateDate, CreateBy )
 values  ( N'蔷薇胸花O2O教学', -- Title - nvarchar(256)
           N'自然风干的蔷薇和银叶菊，嵌有星星点点的冬菇草，跟着匠谱，你手中的植物就会有新的可能。如果你在夏天喜欢穿浅色裙子，那你需要这样一枚胸针。', -- Comment - nvarchar(max)
@@ -298,6 +288,32 @@ values  ( N'蔷薇胸花O2O教学', -- Title - nvarchar(256)
           getDate(), -- ScheduleDate - datetime
           N'厦门市思明区旧物仓', -- Place - nvarchar(max)
           210, -- Price - money
+          N'Kris', -- UpdateBy - nvarchar(128)
+          getDate(), -- UpdateDate - datetime
+          getDate(), -- CreateDate - datetime
+          N'Kris'  -- CreateBy - nvarchar(128)
+          )
+
+insert into dbo.[Stuff] ( Title, [Description], BookId, ArtisanId, Price, UpdateBy, UpdateDate, CreateDate, CreateBy )
+values  ( 
+          N'蔷薇胸花-材料包', -- Title - nvarchar(256)
+          N'干燥植物：黄蔷薇（1）、银叶菊（1）、冬菇草（3～5）、珊瑚果（2）。其他工具：胸针（1）、草绳、剪刀、热熔胶枪', -- Description - nvarchar(max)
+          @currentBookId, -- BookId - int
+		  @currentArtisanId, -- ArtisanId - int
+          35, -- Price - money
+          N'Kris', -- UpdateBy - nvarchar(128)
+          getDate(), -- UpdateDate - datetime
+          getDate(), -- CreateDate - datetime
+          N'Kris'  -- CreateBy - nvarchar(128)
+          )
+
+insert into dbo.Utility (Name, BookId, ArtisanId, Description, Price, UpdateBy, UpdateDate, CreateDate, CreateBy )
+values  (
+          N'蔷薇胸花-工具包', -- Name - nvarchar(256)
+          @currentBookId, -- BookId - int
+          @currentArtisanId, -- ArtisanId - int
+          N'胸针（1）、草绳、剪刀、热熔胶枪', -- Description - nvarchar(max)
+          15, -- Price - money
           N'Kris', -- UpdateBy - nvarchar(128)
           getDate(), -- UpdateDate - datetime
           getDate(), -- CreateDate - datetime

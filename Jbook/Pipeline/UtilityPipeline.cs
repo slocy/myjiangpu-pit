@@ -12,7 +12,10 @@ namespace Jbook.Pipeline {
         }
 
         public List<Utility> GetByBook(int bookId) {
-            var utilityList = Ctx.Sql("select * from utility where bookid = @0", bookId).QueryMany<Utility>();
+            var utilityList =
+                Ctx.Sql(
+                    "SELECT UtilityId, Name, BookId, ArtisanId, [Description], Price FROM dbo.Utility where BookId = @0",
+                    bookId).QueryMany<Utility>();
 
             return utilityList;
         }

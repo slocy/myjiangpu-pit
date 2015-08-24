@@ -17,7 +17,11 @@ namespace Jbook.Controllers {
         public IHttpActionResult Get(int id) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(LessonPipeline._().Get(id));
+            var lesson = LessonPipeline._().Get(id);
+            lesson.Artisan = ArtisanPipeline._().Get(lesson.ArtisanId);
+            lesson.Book = BookPipeline._().Get(lesson.BookId);
+
+            return Ok(lesson);
         }
 
         [HttpPost]

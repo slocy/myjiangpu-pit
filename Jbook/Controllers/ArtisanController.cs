@@ -10,11 +10,10 @@ namespace Jbook.Controllers {
         public IHttpActionResult Get(int id) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            dynamic result = new ExpandoObject();
-            result.Info = ArtisanPipeline._().Get(id);
-            result.Books = BookPipeline._().GetByArtisanId(id);
+            var artisan = ArtisanPipeline._().Get(id);
+            artisan.Books = BookPipeline._().GetByArtisanId(id);
 
-            return Ok(result);
+            return Ok(artisan);
         }
     }
 }

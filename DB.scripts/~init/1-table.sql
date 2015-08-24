@@ -142,9 +142,10 @@ if not exists ( select  1
                                        not null ,
                             Title nVarchar(256) not null ,
                             SubTitle nVarchar(256) null ,
-                            [Stuff] nVarchar(max) null ,
+                            [StuffInfo] nVarchar(max) null ,
                             [Description] nVarchar(max) null ,
                             ArtisanId int null ,
+							IsHidden bit null default(0),
                             PrimaryImage nVarchar(max) null ,
                             PrimaryVideo nVarchar(max) null ,
                             UpdateBy nVarchar(128) not null
@@ -197,6 +198,7 @@ if not exists ( select  1
                              Title nVarchar(256) not null ,
                              [Description] nVarchar(max) null ,
                              BookId int null ,
+							 ArtisanId int null,
                              Price money null ,
                              UpdateBy nVarchar(128) not null
                                                     default 'API' ,
@@ -221,6 +223,8 @@ if not exists ( select  1
         create table Utility ( UtilityId int default ( next value for dbo.GLSEQ )
                                              not null ,
                                Name nVarchar(256) not null ,
+							   BookId int null,
+							   ArtisanId int null,
                                [Description] nVarchar(max) null ,
                                Price money null ,
                                UpdateBy nVarchar(128) not null

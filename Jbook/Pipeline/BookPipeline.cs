@@ -12,13 +12,24 @@ namespace Jbook.Pipeline {
         }
 
         public Book Get(int bookId) {
-            var book = Ctx.Sql("select * from book where bookid = @0", bookId).QuerySingle<Book>();
+            var sql =
+                "SELECT BookId, Title, SubTitle, StuffInfo, [Description], ArtisanId, PrimaryImage, PrimaryVideo FROM dbo.Book where BookId = @0";
+
+            var book = Ctx.Sql(sql, bookId).QuerySingle<Book>();
+            book.Artisan = ArtisanPipeline._().Get(book.ArtisanId);
+            book.Stuffs = StuffPipeline._().GetByBook(book.BookId);
+            book.Utilities = UtilityPipeline._().GetByBook(book.BookId);
+            book.Steps = GetStepsByBookId(book.BookId);
 
             return book;
         }
 
         public List<Book> GetAllBooks() {
-            var books = Ctx.Sql("select * from book").QueryMany<Book>();
+            var books = Ctx.Sql("SELECT top 10 BookId, Title, SubTitle, StuffInfo, [Description], ArtisanId, IsHidden, PrimaryImage, PrimaryVideo, UpdateDate, CreateDate FROM dbo.Book where IsHidden = 0 order by CreateDate desc").QueryMany<Book>();
+
+            foreach (var book in books) {
+                book.Artisan = ArtisanPipeline._().Get(book.ArtisanId);
+            }
 
             return books;
         }
@@ -33,9 +44,9 @@ namespace Jbook.Pipeline {
         }
 
         public List<BookStep> GetStepsByBookId(int bookId) {
-            var bookSteps = Ctx.Sql("select * from BookStep where bookid = @0", bookId).QueryMany<BookStep>();
+            var bookSteps = Ctx.Sql("SELECT BookStepId, Name, BookId, Content FROM dbo.BookStep where BookId = @0", bookId).QueryMany<BookStep>();
 
             return bookSteps;
-        } 
+        }
     }
 }

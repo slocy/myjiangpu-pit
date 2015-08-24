@@ -30,14 +30,10 @@ namespace Jbook.Pipeline {
             return lessonList;
         }
 
-        public dynamic Get(int lessonId) {
-            var sql =
-                "select  LessonId, dbo.Lesson.Title as LessonTitle, [Status], Comment, dbo.Lesson.ArtisanId, dbo.Artisan.Name as ArtisanName, dbo.Artisan.Fullname as ArtisanFullName, dbo.book.BookId, dbo.book.Title as BookTitle, ScheduleDate, Place, Price ";
-            sql += "from    Lesson inner join dbo.Artisan on Artisan.ArtisanId = Lesson.ArtisanId ";
-            sql += "inner join dbo.Book on Lesson.ArtisanId = Artisan.ArtisanId ";
-            sql += "where   LessonId = @lessonId";
+        public Lesson Get(int lessonId) {
+            var sql = "SELECT LessonId, Title, [Status], Comment, ArtisanId, BookId, ScheduleDate, Place, Price FROM dbo.Lesson where LessonId = @lessonId";
 
-            var lesson = Ctx.Sql(sql).Parameter("lessonId", lessonId).QuerySingle<dynamic>();
+            var lesson = Ctx.Sql(sql).Parameter("lessonId", lessonId).QuerySingle<Lesson>();
 
             return lesson;
         }
