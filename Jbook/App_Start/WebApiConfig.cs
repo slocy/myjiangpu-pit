@@ -11,7 +11,7 @@ namespace Jbook {
                 new {
                     controller = "Index",
                     action = "Index",
-                    id = "",
+                    id = RouteParameter.Optional,
                     sid = "",
                     tid = "",
                     fid = ""
