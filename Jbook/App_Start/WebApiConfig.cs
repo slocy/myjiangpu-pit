@@ -7,12 +7,14 @@ namespace Jbook {
             // Web API routes
             config.MapHttpAttributeRoutes();
 
-            config.Routes.MapHttpRoute("DefaultApi", "{controller}/{action}/{id}/{sid}/{tid}/{fid}",
+            config.Routes.MapHttpRoute("Default", "{controller}/{action}/{id}/{sid}/{tid}/{fid}",
                 new {
-                    id = RouteParameter.Optional,
-                    sid = RouteParameter.Optional,
-                    tid = RouteParameter.Optional,
-                    fid = RouteParameter.Optional
+                    controller = "Index",
+                    action = "Index",
+                    id = "",
+                    sid = "",
+                    tid = "",
+                    fid = ""
                 }
                 );
 

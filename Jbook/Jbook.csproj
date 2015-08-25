@@ -151,6 +151,7 @@
     <Compile Include="Pipeline\CustomerPipeline.cs" />
     <Compile Include="Pipeline\IndexPipeline.cs" />
     <Compile Include="Pipeline\LessonPipeline.cs" />
+    <Compile Include="Pipeline\MediaPipeline.cs" />
     <Compile Include="Pipeline\OrderPipeline.cs" />
     <Compile Include="Pipeline\PaymentPipeline.cs" />
     <Compile Include="Pipeline\QrCodePipeline.cs" />
