@@ -9,18 +9,19 @@ namespace Jbook.Controllers {
         public static string Combine(string uri1, string uri2) {
             uri1 = uri1.TrimEnd('/');
             uri2 = uri2.TrimStart('/');
-            return string.Format("{0}/{1}", uri1, uri2);
+
+            return $"{uri1}/{uri2}";
         }
 
         [HttpGet]
         public IHttpActionResult Get(int id, string sid, string tid) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            var mediaFileId = id;
+            var mediaFileParentId = id;
             var type = string.IsNullOrEmpty(sid) ? "IMAGE" : sid.ToUpper();
             var mode = string.IsNullOrEmpty(tid) ? "NORMAL" : tid.ToUpper();
 
-            var mediaFile = MediaPipeline._().Get(mediaFileId, type, mode);
+            var mediaFile = MediaPipeline._().Get(mediaFileParentId, type, mode);
 
             if (string.IsNullOrEmpty(mediaFile?.Url)) return NotFound();
 
