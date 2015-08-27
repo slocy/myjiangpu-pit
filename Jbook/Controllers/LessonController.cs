@@ -7,13 +7,6 @@ using Jbook.Pipeline;
 namespace Jbook.Controllers {
     public class LessonController : BaseApiController {
         [HttpGet]
-        public IHttpActionResult Get(int id, string sid) {
-            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
-
-            return Ok(LessonPipeline._().GetByArtisan(id, sid));
-        }
-
-        [HttpGet]
         public IHttpActionResult Get(int id) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
@@ -22,6 +15,13 @@ namespace Jbook.Controllers {
             lesson.Book = BookPipeline._().Get(lesson.BookId);
 
             return Ok(lesson);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetByArtisan(int id, string sid) {
+            if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
+
+            return Ok(LessonPipeline._().GetByArtisan(id, sid));
         }
 
         [HttpPost]

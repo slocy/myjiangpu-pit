@@ -22,7 +22,7 @@ namespace Jbook.Controllers {
 
             var mediaFile = MediaPipeline._().Get(mediaFileId, type, mode);
 
-            if (mediaFile == null || string.IsNullOrEmpty(mediaFile.Url)) return NotFound();
+            if (string.IsNullOrEmpty(mediaFile?.Url)) return NotFound();
 
             var redirectUrl = Combine(mediaFile.Host, mediaFile.Url);
 
