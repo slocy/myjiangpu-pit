@@ -1,4 +1,5 @@
-﻿using Jbook.Base;
+﻿using System.Collections.Generic;
+using Jbook.Base;
 using Jbook.Models;
 
 namespace Jbook.Pipeline {
@@ -10,7 +11,7 @@ namespace Jbook.Pipeline {
             return new MediaPipeline();
         }
 
-        public MedialFile Get(int mediaId, string type, string mode) {
+        public List<MedialFile> Get(int mediaId, string type, string mode) {
             var sql =
                 "SELECT * FROM dbo.MediaFile where ParentId = @parentId and [Type] = @type and Mode = @mode";
 
@@ -18,7 +19,7 @@ namespace Jbook.Pipeline {
                 .Parameter("parentId", mediaId)
                 .Parameter("type", type)
                 .Parameter("mode", mode)
-                .QuerySingle<MedialFile>();
+                .QueryMany<MedialFile>();
 
             return result;
         }

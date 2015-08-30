@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Http;
 using Jbook.Base;
 using Jbook.Pipeline;
@@ -7,10 +8,17 @@ namespace Jbook.Controllers {
     public class MediaController : BaseApiController {
         [NonAction]
         public static string Combine(string uri1, string uri2) {
-            uri1 = uri1.TrimEnd('/');
-            uri2 = uri2.TrimStart('/');
+            uri1 = uri1?.Trim().TrimEnd('/') ?? string.Empty;
+            uri2 = uri2?.Trim().TrimStart('/') ?? string.Empty;
+
+            if (uri1.ToUpper().StartsWith("HTTP") == false) uri1 = "http://";
 
             return $"{uri1}/{uri2}";
+        }
+
+        [NonAction]
+        public static bool CheckUrlParttern(string url) {
+            return url.ToUpper().StartsWith("HTTP://") || url.ToUpper().StartsWith("HTTPS://");
         }
 
         [HttpGet]
@@ -23,12 +31,23 @@ namespace Jbook.Controllers {
 
             var mediaFile = MediaPipeline._().Get(mediaFileParentId, type, mode);
 
-            if (string.IsNullOrEmpty(mediaFile?.Url)) return NotFound();
+            if (mediaFile.Count <= 0) return NotFound();
 
-            var redirectUrl = Combine(mediaFile.Host, mediaFile.Url);
+            if (mediaFile.Count == 1) {
+                if (string.IsNullOrEmpty(mediaFile[0].Url)) return NotFound();
 
-            if (redirectUrl.ToUpper().StartsWith("HTTP://") || redirectUrl.ToUpper().StartsWith("HTTP://"))
-                return Redirect(redirectUrl);
+                var redirectUrl = Combine(mediaFile[0].Host, mediaFile[0].Url);
+
+                if (CheckUrlParttern(redirectUrl)) return Redirect(redirectUrl);
+            }
+            else {
+                var mediaFileList =
+                    mediaFile.Select(mediaFileItem => Combine(mediaFileItem.Host, mediaFileItem.Url))
+                        .Where(CheckUrlParttern)
+                        .ToList();
+
+                if (mediaFileList.Count > 0) return Ok(mediaFileList);
+            }
 
             return NotFound();
         }
