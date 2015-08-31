@@ -21,5 +21,7 @@ namespace Jbook.Models {
         public List<BookStep> Steps { get; set; }
         public List<Stuff> Stuffs { get; set; }
         public List<Utility> Utilities { get; set; }
+        public List<MedialFile> Images { get; set; }
+        public List<MedialFile> Videos { get; set; }  
     }
 }

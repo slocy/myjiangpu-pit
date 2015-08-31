@@ -16,10 +16,21 @@ values  ( N'茹茹萍', -- Name - nvarchar(256)
           getDate(), -- CreateDate - datetime
           N'Kris'  -- CreateBy - nvarchar(128)
           );
-
 SELECT @currentArtisanId = CONVERT(int, current_value) FROM sys.sequences WHERE name = 'GLSEQ'
 SELECT @currentArtisanId
-
+insert dbo.MediaFile ( ParentId, [Type], Mode, Class, Host, Url, Dimension_X, Dimension_Y, Capacity, ElapseTime, Reference)
+values  ( @currentArtisanId, -- ParentId - int
+          N'IMAGE', -- Class - nvarchar(128)
+          N'NORMAL', -- Mode - nvarchar(128)
+		  N'ARTISAN', -- Class
+          N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
+          N'/image/artisan/adore/2.jpg', -- Url - nvarchar(max)
+          null, -- Dimension_X - nvarchar(256)
+          null, -- Dimension_Y - nvarchar(256)
+          null, -- Capacity - int
+          0, -- ElapseTime - int
+          null -- Reference - nvarchar(max)
+          )
 insert into dbo.Book ( Title, SubTitle, [StuffInfo], Description, ArtisanId, PrimaryImage, PrimaryVideo, UpdateBy, UpdateDate, CreateDate, CreateBy )
 values  ( N'蔷薇胸花', -- Title - nvarchar(256)
           N'来自茹萍的胸针设计', -- SubTitle - nvarchar(256)
@@ -33,9 +44,21 @@ values  ( N'蔷薇胸花', -- Title - nvarchar(256)
           getDate(), -- CreateDate - datetime
           N'Kris'  -- CreateBy - nvarchar(128)
           )
-
 SELECT @currentBookId = CONVERT(int, current_value) FROM sys.sequences WHERE name = 'GLSEQ'
 SELECT @currentBookId
+insert dbo.MediaFile ( ParentId, [Type], Mode, Class, Host, Url, Dimension_X, Dimension_Y, Capacity, ElapseTime, Reference)
+values  ( @currentBookId, -- ParentId - int
+          N'IMAGE', -- Class - nvarchar(128)
+          N'NORMAL', -- Mode - nvarchar(128)
+		  N'BOOK', -- Class
+          N'http://wx-ast.slocy.cn', -- Host - nvarchar(max)
+          N'/image/book/adore-xiongzhen/primary.jpg', -- Url - nvarchar(max)
+          null, -- Dimension_X - nvarchar(256)
+          null, -- Dimension_Y - nvarchar(256)
+          null, -- Capacity - int
+          0, -- ElapseTime - int
+          null -- Reference - nvarchar(max)
+          )
 
 insert into dbo.BookStep ( Name, BookId, Content, UpdateBy, UpdateDate, CreateDate, CreateBy )
 values  ( N'步骤一', -- Name - nvarchar(256)

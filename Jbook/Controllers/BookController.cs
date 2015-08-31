@@ -18,6 +18,11 @@ namespace Jbook.Controllers {
         }
 
         [HttpGet]
+        public IHttpActionResult GetTop(int id) {
+            return Ok(BookPipeline._().GetAllBooks(id));
+        }
+
+        [HttpGet]
         public IHttpActionResult GetByArtisan(int id) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 

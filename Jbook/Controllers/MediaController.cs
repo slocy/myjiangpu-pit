@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Http;
 using Jbook.Base;
 using Jbook.Pipeline;
@@ -46,7 +47,13 @@ namespace Jbook.Controllers {
                         .Where(CheckUrlParttern)
                         .ToList();
 
-                if (mediaFileList.Count > 0) return Ok(mediaFileList);
+                if (mediaFileList.Count <= 0) return NotFound();
+
+                var contentType = HttpContext.Current.Request.ContentType ?? string.Empty;
+                contentType = contentType.Trim().ToUpper();
+
+                if (contentType.StartsWith("IMAGE")) return Redirect(mediaFileList[0]);
+                return Ok(mediaFileList);
             }
 
             return NotFound();
