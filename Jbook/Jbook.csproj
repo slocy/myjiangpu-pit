@@ -115,6 +115,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Base\BaseApiController.cs" />
     <Compile Include="Base\BasePipeline.cs" />
+    <Compile Include="Base\ConfigHelper.cs" />
     <Compile Include="Controllers\ArtisanController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BookController.cs" />
@@ -127,7 +128,7 @@
     <Compile Include="Controllers\QrCodeController.cs" />
     <Compile Include="Controllers\StuffController.cs" />
     <Compile Include="Controllers\UtilityController.cs" />
-    <Compile Include="Controllers\WechatController.cs" />
+    <Compile Include="Controllers\WxController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -145,6 +146,8 @@
     <Compile Include="Models\Stuff.cs" />
     <Compile Include="Models\SystemLog.cs" />
     <Compile Include="Models\Utility.cs" />
+    <Compile Include="Models\WxAccessToken.cs" />
+    <Compile Include="Models\WxJsTicket.cs" />
     <Compile Include="Pipeline\ArtisanPipeline.cs" />
     <Compile Include="Pipeline\AuthPipeline.cs" />
     <Compile Include="Pipeline\BookPipeline.cs" />
