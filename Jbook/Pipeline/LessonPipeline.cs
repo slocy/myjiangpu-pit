@@ -71,5 +71,11 @@ namespace Jbook.Pipeline {
         public int SetPaid(int lessonId, int customerId, bool isPaid) {
             throw new NotImplementedException();
         }
+
+        public List<Lesson> GetByBook(int bookId) {
+            var sql = "select * from dbo.Lesson where BookId = @bookId";
+
+            return base.Ctx.Sql(sql).Parameter("bookId", bookId).QueryMany<Lesson>();
+        } 
     }
 }

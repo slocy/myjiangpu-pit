@@ -24,6 +24,13 @@ namespace Jbook.Controllers {
             return Ok(LessonPipeline._().GetByArtisan(id, sid));
         }
 
+        [HttpGet]
+        public IHttpActionResult GetByBook(int id) {
+            var lessonList = LessonPipeline._().GetByBook(id);
+
+            return Ok(lessonList);
+        }
+
         [HttpPost]
         public IHttpActionResult Apply([FromBody] LessonCustomer lessonCustomer) {
             if (lessonCustomer.Quantity < 1) throw new ArgumentException("Lesson's quantity cannot be less than 1.");
