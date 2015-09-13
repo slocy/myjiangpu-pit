@@ -80,14 +80,18 @@ if not exists ( select  1
     begin
         create table Customer ( CustomerId int default ( next value for dbo.GLSEQ )
                                                not null ,
-                                WechatId nVarchar(512) null ,
-                                Name nVarchar(256) not null ,
+                                Name nVarchar(256) null ,
                                 Nickname nVarchar(256) not null ,
-                                Gender nVarchar(16) null ,
+                                Gender int null ,
                                 Email nVarchar(256) null ,
+								Province nvarchar(256) null,
+								City nvarchar(256) null,
+								Country nvarchar(256) null,
                                 Cellphone nVarchar(64) null ,
-                                Token nVarchar(max) null ,
-								Scope nVarchar(512) null,
+                                OpenId nVarchar(max) null ,
+								UnionId nVarchar(max) null,
+								Privilege nVarchar(max) null,
+								HeadImgUrl nvarchar(max) null,
                                 UpdateBy nVarchar(128) not null
                                                        default 'API' ,
                                 UpdateDate dateTime not null

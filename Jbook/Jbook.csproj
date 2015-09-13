@@ -116,6 +116,7 @@
     <Compile Include="Base\BaseApiController.cs" />
     <Compile Include="Base\BasePipeline.cs" />
     <Compile Include="Base\ConfigHelper.cs" />
+    <Compile Include="Base\JsonDataHelper.cs" />
     <Compile Include="Controllers\ArtisanController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BookController.cs" />
@@ -148,6 +149,8 @@
     <Compile Include="Models\Utility.cs" />
     <Compile Include="Models\WxAccessToken.cs" />
     <Compile Include="Models\WxJsTicket.cs" />
+    <Compile Include="Models\WxOauthAccessToken.cs" />
+    <Compile Include="Models\WxUserInfo.cs" />
     <Compile Include="Pipeline\ArtisanPipeline.cs" />
     <Compile Include="Pipeline\AuthPipeline.cs" />
     <Compile Include="Pipeline\BookPipeline.cs" />

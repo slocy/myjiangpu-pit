@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Net;
 using System.Web.Http;
 using Jbook.Base;
 using Jbook.Models;
-using Newtonsoft.Json;
 
 namespace Jbook.Controllers {
     public class WxController : BaseApiController {
@@ -25,15 +23,6 @@ namespace Jbook.Controllers {
             #5 The ticket can be used in 2 hours.
         */
 
-        [NonAction]
-        private T PaserJsonRequest<T>(string url) {
-            var wc = new WebClient {Proxy = null};
-            var json = wc.DownloadString(url);
-            var result = JsonConvert.DeserializeObject<T>(json);
-
-            return result;
-        }
-
         /// <summary>
         ///   Get the Wechat Ticket by AppId and AppSecret
         /// </summary>
@@ -46,7 +35,7 @@ namespace Jbook.Controllers {
 
             wechatAccessTokenUrl = string.Format(wechatAccessTokenUrl, wechatAppId, wechatSecret);
 
-            var wxAccessToken = PaserJsonRequest<WxAccessToken>(wechatAccessTokenUrl);
+            var wxAccessToken = JsonDataHelper.PaserJsonRequest<WxAccessToken>(wechatAccessTokenUrl);
 
             if (string.IsNullOrEmpty(wxAccessToken?.access_token))
                 return BadRequest("Cannot get the Wechat access token!");
@@ -56,7 +45,7 @@ namespace Jbook.Controllers {
 
             wechatTicketGeneratorUrl = string.Format(wechatTicketGeneratorUrl, wxAccessToken.access_token);
 
-            var wxJsTicket = PaserJsonRequest<WxJsTicket>(wechatTicketGeneratorUrl);
+            var wxJsTicket = JsonDataHelper.PaserJsonRequest<WxJsTicket>(wechatTicketGeneratorUrl);
 
             if (string.IsNullOrEmpty(wxJsTicket?.ticket))
                 return BadRequest("Cannot get the Wechat JS ticket!");
