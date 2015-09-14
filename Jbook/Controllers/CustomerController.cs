@@ -16,7 +16,7 @@ namespace Jbook.Controllers {
         [HttpPost]
         public IHttpActionResult PostCustomer(int customerId, string wechatKey, string customerName, string nickname,
             string city, string geo) {
-            return Ok(CustomerPipeline._().AddCustomer(new Customer()));
+            return Ok(CustomerPipeline._().Save(new Customer()));
         }
     }
 }

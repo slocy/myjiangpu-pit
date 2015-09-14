@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Specialized;
 using Jbook.Base;
 using Jbook.Models;
 
@@ -21,16 +20,30 @@ namespace Jbook.Pipeline {
             return customer;
         }
 
-        public int AddCustomer(Customer customer) {
-            throw new NotImplementedException();
+        public Customer Save(Customer customer) {
+            if (string.IsNullOrEmpty(customer.Nickname)) return null;
+
+            if (customer.CustomerId == 0) Ctx.Insert("Customer", customer).AutoMap(x => x.CustomerId).Execute();
+            else Ctx.Update("Customer", customer).Execute();
+
+            return customer;
         }
 
-        public bool ExistWechatCustomer(string unionId) {throw new NotImplementedException(); }
+        public Customer FindByUnionId(string unionId) {
+            var sql = "select top 1 * from customer where unionid = @0";
 
-        public void ProcessWechatUserFetching(WxOauthAccessToken wxOauthAccessToken, WxUserInfo wxUserInfo) {
-            if (wxOauthAccessToken == null || wxUserInfo == null || string.IsNullOrEmpty(wxOauthAccessToken.unionid)) return;
+            return Ctx.Sql(sql, unionId).QuerySingle<Customer>();
+        }
 
-            var customer = new Customer {
+        public Customer ProcessWechatUserFetching(WxOauthAccessToken wxOauthAccessToken, WxUserInfo wxUserInfo) {
+            if (wxOauthAccessToken == null || wxUserInfo == null || string.IsNullOrEmpty(wxOauthAccessToken.unionid))
+                return null;
+
+            var customer = FindByUnionId(wxOauthAccessToken.unionid);
+
+            if (customer != null && string.IsNullOrEmpty(customer.Nickname) == false) return customer;
+
+            customer = new Customer {
                 UpdateDate = DateTime.Now,
                 Cellphone = "",
                 City = wxUserInfo.city,
@@ -46,7 +59,7 @@ namespace Jbook.Pipeline {
                 UnionId = wxUserInfo.unionid
             };
 
-            // todo : should save this customer entity to database.
+            return Save(customer);
         }
     }
 }

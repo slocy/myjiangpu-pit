@@ -17,12 +17,15 @@ namespace Jbook.Controllers {
                 var wechatSecret = ConfigHelper._().GetAppSettingValue("WechatSecret");
                 var wechatUserInfoUrl = ConfigHelper._().GetAppSettingValue("WechatGetUserInfoUrl");
 
+                // step 1: Get the access token
                 wechatOAuthRenewPathUrl = string.Format(wechatOAuthRenewPathUrl, wechatAppId, wechatSecret, id);
                 var accessToken = JsonDataHelper.PaserJsonRequest<WxOauthAccessToken>(wechatOAuthRenewPathUrl);
 
+                // step 2: Get the wechat user unionid.
                 wechatUserInfoUrl = string.Format(wechatUserInfoUrl, accessToken.access_token, accessToken.openid);
                 var userInfo = JsonDataHelper.PaserJsonRequest<WxUserInfo>(wechatUserInfoUrl);
 
+                // process the customer data if it's not saving.
                 CustomerPipeline._().ProcessWechatUserFetching(accessToken, userInfo);
 
                 return Ok(new {token = accessToken, userinfo = userInfo});
