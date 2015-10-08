@@ -35,11 +35,18 @@ namespace Jbook.Pipeline {
             return Ctx.Sql(sql, unionId).QuerySingle<Customer>();
         }
 
+        public Customer FindByOpenId(string openid)
+        {
+            var sql = "select top 1 * from customer where openid = @0";
+
+            return Ctx.Sql(sql, openid).QuerySingle<Customer>();
+        }
+
         public Customer ProcessWechatUserFetching(WxOauthAccessToken wxOauthAccessToken, WxUserInfo wxUserInfo) {
-            if (wxOauthAccessToken == null || wxUserInfo == null || string.IsNullOrEmpty(wxOauthAccessToken.unionid))
+            if (wxOauthAccessToken == null || wxUserInfo == null || string.IsNullOrEmpty(wxOauthAccessToken.openid))
                 return null;
 
-            var customer = FindByUnionId(wxOauthAccessToken.unionid);
+            var customer = FindByOpenId(wxOauthAccessToken.openid);
 
             if (customer != null && string.IsNullOrEmpty(customer.Nickname) == false) return customer;
 
