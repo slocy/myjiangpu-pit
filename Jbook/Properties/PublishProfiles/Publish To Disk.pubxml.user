@@ -13,7 +13,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/11/2015 23:09:41</publishTime>
     </File>
     <File Include="bin/Jbook.dll">
-      <publishTime>09/13/2015 22:48:35</publishTime>
+      <publishTime>09/15/2015 13:49:18</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>08/11/2015 21:11:02</publishTime>
@@ -100,7 +100,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/10/2012 12:03:34</publishTime>
     </File>
     <File Include="Configurations/appsettings.config">
-      <publishTime>09/13/2015 16:47:34</publishTime>
+      <publishTime>09/14/2015 15:42:18</publishTime>
     </File>
     <File Include="Configurations/connections.config">
       <publishTime>08/15/2015 21:57:09</publishTime>

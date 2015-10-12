@@ -18,5 +18,14 @@ namespace Jbook.Pipeline {
 
             return artisan;
         }
+
+        public Artisan GetByOpenId(string openId) {
+            var artisan =
+                Ctx.Sql(
+                    "select top 1 ArtisanId, Name, Fullname, StudioName, CellPhone, [Description], City, [Address] from dbo.Artisan where wechatid=@0",
+                    openId).QuerySingle<Artisan>();
+
+            return artisan;
+        }
     }
 }

@@ -10,7 +10,15 @@ namespace Jbook.Controllers {
         public IHttpActionResult Get(int id) {
             if (id <= 0) throw new ArgumentException("Parameter id must be not empty!");
 
-            return Ok(CustomerPipeline._().Get(id));
+            var customer = CustomerPipeline._().Get(id);
+
+            if (string.IsNullOrEmpty(customer.OpenId)) return Ok(customer);
+
+            var artisan = ArtisanPipeline._().GetByOpenId(customer.OpenId);
+
+            var result = new {Customer = customer, Artisan = artisan};
+
+            return Ok(result);
         }
 
         [HttpPost]

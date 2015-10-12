@@ -35,8 +35,7 @@ namespace Jbook.Pipeline {
             return Ctx.Sql(sql, unionId).QuerySingle<Customer>();
         }
 
-        public Customer FindByOpenId(string openid)
-        {
+        public Customer FindByOpenId(string openid) {
             var sql = "select top 1 * from customer where openid = @0";
 
             return Ctx.Sql(sql, openid).QuerySingle<Customer>();
