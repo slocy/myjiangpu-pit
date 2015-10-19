@@ -51,15 +51,17 @@ namespace Jbook.Pipeline {
 
             customer = new Customer {
                 UpdateDate = DateTime.Now,
+                UpdateBy = "Wechat API",
                 Cellphone = "",
                 City = wxUserInfo.city,
                 Country = wxUserInfo.country,
+                Province = wxUserInfo.province,
                 CreateBy = "API",
                 CreateDate = DateTime.Now,
                 Email = "",
                 Gender = wxUserInfo.sex,
                 HeadImgUrl = wxUserInfo.headimgurl,
-                Name = "",
+                Name = null,
                 Nickname = wxUserInfo.nickname,
                 OpenId = wxUserInfo.openid,
                 UnionId = wxUserInfo.unionid
